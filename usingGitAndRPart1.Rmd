@@ -106,8 +106,8 @@ On Mac or Linux, you can also use a regular terminal, as long as it is running b
 If this works, the next steps are to tell git your name and email address. The email address should be the address that you registered with GitHub, but the name can be your real name. Type the following in your terminal:
 
 ```
-git config --global user.name 'Jane Doe'
-git config --global user.email 'jane@example.com'
+git config --global user.name 'Grumpy Git'
+git config --global user.email 'grumpyoldgit@example.com'
 ```
 
 To check that this has been correctly entered:
@@ -127,14 +127,14 @@ Go to https://github.com and make sure you are logged in to your account. Click 
 This will open a form with several options. Enter the following:
 
 - Repository name: `myrepo` (or whatever name you will easily remember).
-- Description: “setup test” (or whatever, but it is good to get into practice of writing something descriptive in the README).
-- Public. YES 
+- Description: "`setup test`" (or something else, but it is good to get into practice of writing something descriptive in the README).
+- Public. `YES` 
 - Initialize this repository with a README. **This is a key option for linking to R**
 - For everything else, just accept the default.
 
 Click button [Create repository.]
 
-Once this is created, we will now link to this from your computer. Click the button [Clone or download], and copy the HTTPS URL (if you click on the little clipboard icon this will get copied to your clipboard).
+Once this is created, we will now link to this from your computer. Click the green button [Code], and copy the HTTPS URL (if you click on the little clipboard icon this will get copied to your clipboard).
 
 Go back to the terminal on your computer. Change your working directory until you are somewhere where you are happy to be making a copy of your repository. In a terminal:
 
@@ -144,7 +144,7 @@ Go back to the terminal on your computer. Change your working directory until yo
     - `cd ..` will go up one level
     - `cd /path/to/my/files` will change to whatever path you have listed
 
-To make a clone of your repository, type the following into the terminal, once you have changed directory:
+To make a clone of your repository, type the following into the terminal, once you have changed directory to where you want the local files saved:
 
 ```
 git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY.git
@@ -161,18 +161,27 @@ head README.md
 git remote show origin
 ```
 
-The last of these commands will provide information about where this would cloned from, information about where the master repository is held, and whether or not the local clone copy is up-to-date (it is for now). 
-jenny@2015-mbp myrepo $ git remote show origin
+The last of these commands will provide information about where this would be cloned from, information about where the master repository is held, and whether or not the local clone copy is up-to-date (it is for now). 
+
+```
+git remote show origin
+```
 
 ### Make a local change, commit, and push
 
-We will make a simple change to the READ.md file, and then check to see if we can push this to GitHub. You can open this file with a text editor, or run the following command line to insert some new text. 
+We will make a simple change to the `READ.md` file, and then check to see if we can push this to GitHub. You can open this file with a text editor, or run the following command line to insert some new text. 
 
 ```
 echo "A line I wrote on my local computer" >> README.md
 ```
 
-Now if you look at the status of git, it will tell you that one file (README.md) has been modified. 
+If you want to check that git has seen this change, type the following at the command line
+
+```
+git status
+```
+
+And this should tell you that one file (`README.md`) has been modified. 
 
 ```
     modified:   README.md
@@ -196,7 +205,7 @@ Delta compression using up to 8 threads.
 Compressing objects: 100% (2/2), done.
 Writing objects: 100% (3/3), 311 bytes | 0 bytes/s, done.
 Total 3 (delta 0), reused 0 (delta 0)
-To https://github.com/geogrtest/myrepo.git
+To https://github.com/grumpyoldgit/grumpyoldgit.git
    b4112c5..de669ba  master -> master
 ```
 
@@ -204,7 +213,7 @@ To https://github.com/geogrtest/myrepo.git
 
 Now let's check to see if the local change propagated to the GitHub repository. Go back to your GitHub page and refresh the repository page. You should now see the new line in the README file.
 
-If you click on [commits], at the top of the page, you will get a list of the past changes (there will only be one so far). At the far right hand side of this page is a small icon that looks like this `<>` for each commit. Clicking this will show you the files in the repository *before* that commit was made, which allows you to track the changes made by yourself (and others). 
+While the README file is automatically shown when you access the directory, you can also look at the content of any other file you have added to the repository. Click on [Code], at the top of the page, then select any file (there will probably only be the README file for now). If the file is a text file, the content will be displayed in the window. This window allows you to track past changes in the file by clicking on the 'History' link on the right hand side. For now, this will just show the initial commit when the repository was made, and the update to the README file. At the far right hand side of this page is a small icon that looks like this `<>` for each commit. Clicking this will show you the files in the repository *before* that commit was made, which allows you to track the changes made by yourself (and others). 
 
 If you have got to this point, you now have a successfully working git installation. We will next look at how to integrate this properly with R/RStudio.
 
