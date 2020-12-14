@@ -1,0 +1,6 @@
+TO DO
+
+- Added something on cloning other peoples repos
+- Something on merging
+- Github pages
+- Add function to first R lab 
