@@ -1,17 +1,21 @@
 ---
 title: 'Linking R and GitHub: part 1'
 author: "Simon Brewer"
-date: "4/2/2019"
+date: "12/10/2020"
 output:
   html_document:
+    theme: flatly
     df_print: paged
+    number_sections: true
+    toc: true
+    toc_float: true
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## git
+# **git**
 
 git is a version control system designed by the developers of the Linux kernel. It is free to use and install and offers a whole bunch of ways to help with coding work, particularly when this is collaborative. This includes:
 
@@ -24,7 +28,7 @@ The whole system works through repositories: a set of files dedicated to a given
 
 The examples used here are based on the information available at [happygitwithr][hgwrID]. This website has much more extensive instructions on the use of git and R (and git on its own), and is an excellent place to follow up. 
 
-## GitHub
+# GitHub
 
 GitHub is one of several online hosting sites, that provide cloud-based storage for your git repositories. This (and git) now integrate quite seamlessly with R, and particularly with RStudio, so in this lab, we'll go through the steps of setting up R and GitHub to play nicely together. 
 
@@ -85,7 +89,7 @@ sudo yum install git
 
 You can also get the latest version of git [here][gitID]. 
 
-### Setting up git
+## Setting up git
 
 Once the installation is complete, open a terminal to check that git is working. There are several options to access a terminal, but an easy one is to use the terminal in RStudio. Open RStudio, then go to [Tools] > [Terminal] > [New Terminal], and you should get a new tab in the console panel. Go to this, and type the following to check that git is working:
 
@@ -116,11 +120,11 @@ To check that this has been correctly entered:
 git config --global --list
 ```
 
-## Connect to GitHub
+# Connect to GitHub
 
 In this section, we will walk through the steps of connecting to GitHub for the first time, and both pulling from and pushing to GitHub from your computer.
 
-### Make a repo on GitHub
+## Make a repo on GitHub
 
 Go to https://github.com and make sure you are logged in to your account. Click on [Repositories], then click the green [New] button.
 
@@ -167,7 +171,7 @@ The last of these commands will provide information about where this would be cl
 git remote show origin
 ```
 
-### Make a local change, commit, and push
+## Make a local change, commit, and push
 
 We will make a simple change to the `READ.md` file, and then check to see if we can push this to GitHub. You can open this file with a text editor, or run the following command line to insert some new text. 
 
@@ -209,7 +213,7 @@ To https://github.com/grumpyoldgit/grumpyoldgit.git
    b4112c5..de669ba  master -> master
 ```
 
-### Confirm the commit
+## Confirm the commit
 
 Now let's check to see if the local change propagated to the GitHub repository. Go back to your GitHub page and refresh the repository page. You should now see the new line in the README file.
 
