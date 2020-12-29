@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # **git**
 
-git is a version control system designed by the developers of the Linux kernel. It is primarily used to manage the development of source code, but can easily be used to manage any set of files. It is free to use and install and is particularly useful when managing files for collaborative work, including:
+**git** is a version control system designed by the developers of the Linux kernel. It is primarily used to manage the development of source code, but can easily be used to manage any set of files. It is free to use and install and is particularly useful when managing files for collaborative work, including:
 
 - version control to avoid overwriting new code with old
 - version storage to find older modifications
@@ -149,7 +149,25 @@ Go back to the terminal on your computer. Change your working directory until yo
     - `cd /path/to/my/files` will change to whatever path you have listed
 - `ls` will print a list of the files in the current directory
 
-To make a clone of your repository, type the following into the terminal, once you have changed directory to where you want the local files saved:
+If you are working with Windows, the easiest way to create a folder that you can easily find is to change to the desktop:
+
+```
+cd /c/User/USERNAME/Desktop
+```
+
+And then make a new folder here that you will use for this lab
+
+```
+mkdir rgithub
+```
+
+Finally change to this directory
+
+```
+cd rgithub
+```
+
+Once you have changed directory to where you want the local files saved, make a clone of your repository by typing the following into the terminal:
 
 ```
 git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY.git
@@ -230,6 +248,51 @@ To https://github.com/grumpy-old-git/myrepo.git
 Now let's check to see if the local change propagated to the GitHub repository. Go back to your GitHub page and refresh the repository page. You should now see the new line in the README file.
 
 While the README file is automatically shown when you access the directory, you can also look at the content of any other file you have added to the repository. Click on [Code], at the top of the page, then select any file (there will probably only be the README file for now). If the file is a text file, the content will be displayed in the window. This window allows you to track past changes in the file by clicking on the 'History' link on the right hand side. For now, this will just show the initial commit when the repository was made, and the update to the README file. At the far right hand side of this page is a small icon that looks like this `<>` for each commit. Clicking this will show you the files in the repository *before* that commit was made, which allows you to track the changes made by yourself (and others). 
+
+# Adding files
+
+Next, we'll add a file to the local repository and push this to GitHub. The example here uses a Netlogo model (`randomWalk4.nlogo`), but you can upload any file. Note that GitHub limits the size of the files you can upload to 100Mb, so it's best to choose a small file for this. Copy the file to your local repository (e.g. `Desktop/rgithub/myrepo`). Once it is there, go back to the terminal and enter `git status` to check that git has seen the new file. It shoudl tell you that you have an *untracked* file in the repository. This simply means that git has found the file, but is not tracking it as part of the repository. To fix this, we need to add the file:
+
+```
+git add randomWalk4.nlogo
+git status
+```
+
+The file will now be marked as a *new* file, and will be added the next time you make a commit. So let's do that now. 
+
+```
+git commit -m "Added model code"
+git push
+```
+
+If you want to add several files, then running `git add .` will add everything in the directory that is currently untracked, or you can use wildcards `git add '*.R'`. There may be files that you do not want to commit to GitHub, either because these are too large or because these include sensitive information. You can exclude these by adding them to a file called `.gitignore`. First check if this already exists in your repository
+
+```
+ls -a
+```
+
+If it doesn't, you can create it using the Unix `touch` command:
+
+```
+touch .gitignore
+```
+
+As an example, we'll now make a copy of the file that you just pushed to your repository (the new name doesn't matter)
+
+```
+cp randomWalk4.nlogo allMySecrets.txt
+git status
+```
+
+Which lists the new file. Add this to the .gitignore file
+
+```
+echo allMySecrets.txt >> .gitignore
+git status
+```
+
+And this has now been dropped from the list of untracked files. 
+
 
 If you have got to this point, you now have a successfully working git installation. We will next look at how to integrate this properly with R/RStudio.
 
