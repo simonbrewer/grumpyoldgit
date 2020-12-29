@@ -30,7 +30,7 @@ The examples used here are based on the information available at [happygitwithr]
 
 # GitHub
 
-GitHub is one of several online hosting sites, that provide cloud-based storage for your git repositories. This (and git) now integrate quite seamlessly with R, and particularly with RStudio, so in this lab, we'll go through the steps of setting up R and GitHub to play nicely together. 
+GitHub is one of several online hosting sites, that provide cloud-based storage for your git repositories (other options are GitLab and Bitbucket). This (and git) now integrate quite seamlessly with R, and particularly with RStudio, so in the next lab, we'll go through the steps of setting up R and GitHub to play nicely together. 
 
 The overall setup scheme is as follows:
 
@@ -293,6 +293,21 @@ git status
 
 And this has now been dropped from the list of untracked files. 
 
+# Cloning a repository
+
+The last thing we'll do in this lab is to clone someone else's repository. For this part of the lab, you'll need to work in pairs or a small group. Using the instructions from this lab, each person should
+
+- Make a new repository on GitHub. Make sure ths has a different name to that of your working partner
+- Clone your repository onto your computer
+- Update your README with a *polite* message for your working partner
+- Add a file to your local repository and use the add/commit process to push it to GitHub
+
+Once you have done this, clone your partner's repository onto your computer. To do this:
+
+- Go your partner's GitHub page and find the correct repository. 
+- Click on the green [Code] button and copy the link
+- Go to your terminal and type `cd ..` to change to the higher level directory 
+- Clone the repo: `git clone https://github.com/NAME/REPOSITORY.git` (but replace the https link with the link that you copied)
 
 If you have got to this point, you now have a successfully working git installation. We will next look at how to integrate this properly with R/RStudio.
 
