@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # **git**
 
-git is a version control system designed by the developers of the Linux kernel. It is free to use and install and offers a whole bunch of ways to help with coding work, particularly when this is collaborative. This includes:
+git is a version control system designed by the developers of the Linux kernel. It is primarily used to manage the development of source code, but can easily be used to manage any set of files. It is free to use and install and is particularly useful when managing files for collaborative work, including:
 
 - version control to avoid overwriting new code with old
 - version storage to find older modifications
@@ -59,7 +59,7 @@ git is the underlying software that manages the repositories, keeps files curren
 
 ### Windows
 
-The easiest way to install git is using [Git for windows][g4wID]. This is a self contained installer; download it and run it and follow all the usual prompts. 
+The easiest way to install git is using [Git for windows][g4wID]. This is a self contained installer; download it, run it and accept the default settings (although feel free to switch to a more modern text editor than vim).
 
 ### Mac OSX
 
@@ -103,9 +103,9 @@ and
 git --version
 ```
 
-If this doesn't work, open [Tools] > [General options]. Select the Terminal from the left hand side, and look at the drop down list titled [Open new terminal with..]. If there is an open for `git bash`, select this and try again. 
+If this doesn't work, open [Tools] > [Global options]. Select the Terminal from the left hand side, and look at the drop down list titled [Open new terminal with..]. If there is an open for `git bash`, select this and try again. 
 
-On Mac or Linux, you can also use a regular terminal, as long as it is running bash. On Windows, you can access Git Bash from the Start menu.
+On Mac or Linux, you can also use a regular terminal, as long as it is running bash. On Windows, you can access Git Bash from the Start menu, which will open a terminal.
 
 If this works, the next steps are to tell git your name and email address. The email address should be the address that you registered with GitHub, but the name can be your real name. Type the following in your terminal:
 
@@ -147,6 +147,7 @@ Go back to the terminal on your computer. Change your working directory until yo
     - `cd` will go to your home directory
     - `cd ..` will go up one level
     - `cd /path/to/my/files` will change to whatever path you have listed
+- `ls` will print a list of the files in the current directory
 
 To make a clone of your repository, type the following into the terminal, once you have changed directory to where you want the local files saved:
 
@@ -154,7 +155,15 @@ To make a clone of your repository, type the following into the terminal, once y
 git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY.git
 ```
 
-Replace the `https://` address with the URL copied from GitHub. 
+Replace the `https://` address with the URL copied from GitHub. git will now make a new directory with the name of your repository and copy all files from GitHub to this directory. You should see something similar to the following output if this has been successful:
+
+```
+Cloning into 'myrepo'...
+remote: Enumerating objects: 3, done.
+remote: Counting objects: 100% (3/3), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Receiving objects: 100% (3/3), done.
+```
 
 To check that this has worked, we will change directory to the newly created clone repository. and take a look at its contents. 
 
@@ -165,7 +174,7 @@ head README.md
 git remote show origin
 ```
 
-The last of these commands will provide information about where this would be cloned from, information about where the master repository is held, and whether or not the local clone copy is up-to-date (it is for now). 
+The `head` command will show you the first few lines of the README file. This is a markdown file and is used as the default landing page for your repository. The last of these commands will provide information about where this would be cloned from, information about where the master repository is held, and whether or not the local clone copy is up-to-date (it is for now). 
 
 ```
 git remote show origin
@@ -176,7 +185,7 @@ git remote show origin
 We will make a simple change to the `READ.md` file, and then check to see if we can push this to GitHub. You can open this file with a text editor, or run the following command line to insert some new text. 
 
 ```
-echo "A line I wrote on my local computer" >> README.md
+echo "This is my exciting first GitHub repo. Whoo." >> README.md
 ```
 
 If you want to check that git has seen this change, type the following at the command line
@@ -191,7 +200,7 @@ And this should tell you that one file (`README.md`) has been modified.
     modified:   README.md
 ```
 
-Now let's push this change to git. This is done in three parts. First we 'stage' the changes (basically creating a list of all the modifications we wish to push. Then we create a 'commit', the package of changes along with a brief description of what the modifications are. Finally, we push this to git. You should at this point be asked to enter your username and password for GitHub, so do so, and the changes will be pushed to GitHub. 
+Now let's push this change to git. This is done in three parts. First we *stage* the changes (basically creating a list of all the modifications we wish to push. Then we create a *commit*, the package of changes along with a brief description of what the modifications are. Finally, we *push* this to git. You should at this point be asked to enter your username and password for GitHub, so do so, and the changes will be pushed to GitHub. 
 
 ```
 git add -A
@@ -201,16 +210,19 @@ git push
 
 The description of changes is a key part of the way git works, and you will not be allowed to push changes without this. The goal here is to make the description brief but informative, and in turn the commits you make should be relatively small increments each time. Remember that the goal of these comments is to allow collaborators and other users to understand what is going on and how this is affecting the code. 
 
+Depending on your operating system, this might open a browser page for GitHub's credential manager, which can be used to store your login details. Here, you need to click the green button [Authorize GitCredentialManager], then enter your password. This may not work in certain browsers (e.g. Windows Edge). If the button is greyed out and you can't click it, close the browser and stop the `push` command (Ctrl-C). Now set you default browser to something else (e.g. Chrome) and try and run the `git push` command again. 
+
 If this has worked, you should see some output similar to this:
 
 ```
-Counting objects: 3, done.
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
 Delta compression using up to 8 threads.
 Compressing objects: 100% (2/2), done.
 Writing objects: 100% (3/3), 311 bytes | 0 bytes/s, done.
-Total 3 (delta 0), reused 0 (delta 0)
-To https://github.com/grumpyoldgit/grumpyoldgit.git
-   b4112c5..de669ba  master -> master
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://github.com/grumpy-old-git/myrepo.git
+   b4112c5..de669ba  main -> main
 ```
 
 ## Confirm the commit
