@@ -30,24 +30,30 @@ In a collaborative project, you should create new branches for each particular t
 
 In this example, a default repository (`master`) has been established (green line). Two branches are then checked out, each set up to work on a single new feature (`feature1`, `feature2`). When feature 1 is complete, this is merged back to the `master` branch, through a pull request, followed by a second merge for feature 2. 
 
-```{r echo=FALSE}
+```{r echo=FALSE, fig.asp=0.55}
 img <- readPNG("images/branches0.png")
 grid.raster(img)
 ```
 
+Fig: Example of git repository with two branches (https://digitalvarys.com/git-branch-and-its-operations/)
+
 Note that it is also possible to checkout from a lower-level branch. If, for example, you have a working version of a new feature, you might want to check out a new branch based on this, where you could add an additional feature, or new method. This does not affect the working version, *and* doesn't mess with the main branch. In this example, a second branch is checked out from `feature1`, then merged back prior to the merge back to the main. 
 
-```{r echo=FALSE}
+```{r echo=FALSE, fig.asp=0.25}
 img <- readPNG("images/branches1.png")
 grid.raster(img)
 ```
 
+Fig: Example with sub-branches (https://docs.github.com)
+
 If the intermediate branch is merged back and deleted, the lower level branch will be automatically re-assigned the next higher level branch
 
-```{r echo=FALSE}
+```{r echo=FALSE, fig.asp=0.25}
 img <- readPNG("images/branches2.png")
 grid.raster(img)
 ```
+
+Fig: Example with loss of higher level branch (https://docs.github.com)
 
 In the next section, we're going to look briefly at how to work with branches through the terminal (in case you want to work with non-R files), and then we'll go through the steps of working with branches through RStudio. 
 
@@ -100,7 +106,14 @@ If you now run `git branch -a`, you should see the following output (or close to
   remotes/origin/main
 ```
 
-The `*` represent a pointer and indicates the current working repository. 
+The `*` represent a pointer and indicates the current working repository. Make sure that this is pointing to your new branch, and then let's add a file
+
+```
+touch myLittlePonyScript.txt
+```
+
+This will just create a blank text file in your repository (sorry - the script is a secret). If you check git's status, it should list this file as an untracked change. 
+```
 
 
 
