@@ -13,6 +13,8 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(png)
+library(grid)
 ```
 
 # **git**
@@ -218,7 +220,16 @@ And this should tell you that one file (`README.md`) has been modified.
     modified:   README.md
 ```
 
-Now let's push this change to git. This is done in three parts. First we *stage* the changes (basically creating a list of all the modifications we wish to push. Then we create a *commit*, the package of changes along with a brief description of what the modifications are. Finally, we *push* this to git. You should at this point be asked to enter your username and password for GitHub, so do so, and the changes will be pushed to GitHub. 
+Now let's push this change to git. This is done in three parts. 
+
+```{r echo=FALSE, fig.asp=0.2}
+img <- readPNG("images/git_flow.png")
+grid.raster(img)
+```
+
+Fig: git work flow (https://thenewstack.io/git-with-the-program-getting-started-with-github/)
+
+First we *stage* the changes (basically creating a list of all the modifications we wish to push. Then we create a *commit*, the package of changes along with a brief description of what the modifications are. Finally, we *push* this to git. You should at this point be asked to enter your username and password for GitHub, so do so, and the changes will be pushed to GitHub. 
 
 ```
 git add -A

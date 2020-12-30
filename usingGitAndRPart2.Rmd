@@ -186,6 +186,8 @@ Next, you are going to clone your partner's repository:
 
 The project will now be created and the files will be cloned from GitHub to your computer. 
 
+**Rolling back changes??**
+
 # Deleting GitHub repositories
 
 We've made quite a few example repositories so far. If you would like to delete any git repository, you will need to both delete the local copy and the one hosted by GitHub. The local copy can be deleted like any normal folder on your computer. The remote copy can be deleted by going to the repository page on GitHub, clicking on [Settings], scrolling all the way down to the Danger Zone[^1], and selecting [Delete this repository].
