@@ -158,7 +158,7 @@ Now if you check your Git tab, you should now see this file, with a small 'A' to
 
 Finally, we'll add a simple R script that reads the Mauna Loa CO$_2$ file and plots it. Open a new script and add the following code (note we need to load both the data and the file containing the plot function.
 
-```{r}
+```{r fig.keep='none'}
 # Load function
 source("plot_ts.R")
 # Load file
@@ -167,7 +167,13 @@ co2 <- read.csv("co2_mm_mlo.csv")
 plot_ts(co2$decdate, co2$interpolated, main = "Mauna Loa CO2 record")
 ```
 
-Save and run your script, and if it all works, commit and push this to GitHub (note that this will push the previous commit as well). Finally, go back to your browser and check that everything has uploaded correctly. 
+Save and run your script, and if it all works you should see the following, exciting plot. 
+
+```{r echo=FALSE}
+plot_ts(co2$decdate, co2$interpolated, main = "Mauna Loa CO2 record")
+```
+
+Now commit and push this to GitHub (note that this will push the previous commit as well). Finally, go back to your browser and check that everything has uploaded correctly. 
 
 . For this next section, you are again going to work in pairs
 - Cloning repo
