@@ -175,7 +175,9 @@ plot_ts(co2$decdate, co2$interpolated, main = "Mauna Loa CO2 record")
 
 Now commit and push this to GitHub (note that this will push the previous commit as well). Finally, go back to your browser and check that everything has uploaded correctly. 
 
-Next, you are going to clone your partner's repository:
+# Cloning another repository
+
+Finally, you are going to clone your partner's repository:
 
 - First, close RStudio
 - Go to their GitHub page and find the repository that they have just made. Click the green [Code] button and copy the link.  
@@ -186,7 +188,65 @@ Next, you are going to clone your partner's repository:
 
 The project will now be created and the files will be cloned from GitHub to your computer. 
 
-**Rolling back changes??**
+# Undoing changes
+
+git has a couple of methods for undoing commits made to your repository: `reset` and `revert`. 
+
+## `reset`
+
+If you have made local commits but not yet pushed these to GitHub (or any other location), then the `reset` function is fairly straightforward. Each commit that you made is accompanied by a short hexadecimal hash string called SHA1. This can be used directly with the `reset` command to move back to ab earlier version of your code. To see the SHA1 numbers, together with the accompanying commit message, simply type:
+
+```
+git log --oneline
+```
+
+The output will look something like this, with the SHA1 number in the first column, followed by the message:
+
+```
+b764644 Third commit
+7c709f0 Second commit
+9ef9173 First commit
+```
+
+Now to revert to the second commit, we use the corresponding number (`7c709f0`) with the reset function as follows. Note that your numbers will be different, and you should probably not run this unless you are happy to rollback. 
+
+```
+git reset 7c709f0
+```
+
+If you run `git log --oneline` now, the output would look like this:
+
+```
+7c709f0 Second commit
+9ef9173 First commit
+```
+
+You can also use relative changes, e.g. the following will move back two places from the current commit:
+
+```
+git reset current~2
+```
+
+## `revert`
+
+The `reset` function acts like the undo function in most pieces of software. It effectively removes any changes that you have made. The `revert` function works in a slightly different way by creating a *new* commit that reverses the previous changes. For example, if you had added a line of code in the last commit, then the `revert` function creates a new commit in which this line is removed. To revert to the previous commit, simply type:
+
+```
+git revert
+```
+
+Note that this is also an option in RStudio's [Git] tab under the [More] drop-down menu. Because this adds a new commit, this will prompt you to enter a message. 
+
+The main difference is that this retains the full set of previous commits *plus* the new one, allowing a more detailed trace of your changes. If you run the `revert` command on this same example, the output from the log will now look like this:
+
+```
+11b7712 Revert "Third commit"
+b764644 Third commit
+7c709f0 Second commit
+9ef9173 First commit
+```
+
+In general, this is the preferred method for undoing changes, particularly with repositories that are shared with other people.
 
 # Deleting GitHub repositories
 
