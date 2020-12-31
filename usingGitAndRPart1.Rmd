@@ -302,7 +302,7 @@ echo allMySecrets.txt >> .gitignore
 git status
 ```
 
-And this has now been dropped from the list of untracked files. 
+And this has now been dropped from the list of untracked files. If you want to see your history of commits, simply type `git log` in the terminal to print out the author, date and comment for each one.
 
 # Cloning a repository
 
