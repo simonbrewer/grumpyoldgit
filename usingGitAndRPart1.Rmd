@@ -26,13 +26,13 @@ library(grid)
 - tracking for issues and bugs
 - commenting system to make it clear(ish) what changes have been made and why
 
-The whole system works through repositories: a set of files dedicated to a given project. This is not restricted to R files, and can be used with most computer languages, documents and files. 
+The whole system works through repositories: a set of files dedicated to a given project. This is not restricted to R files, and can be used with most computer languages, documents and files. Repositories can be stored on your own computer (*local*) or hosted on a server (*remote*). In practice, most people use a combination of these, with your files being changed locally, then *committed* to the hosting service. 
 
 The examples used here are based on the information available at [happygitwithr][hgwrID]. This website has much more extensive instructions on the use of git and R (and git on its own), and is an excellent place to follow up. 
 
 # GitHub
 
-GitHub is one of several online hosting sites, that provide cloud-based storage for your git repositories (other options are GitLab and Bitbucket). This (and git) now integrate quite seamlessly with R, and particularly with RStudio, so in the next lab, we'll go through the steps of setting up R and GitHub to play nicely together. 
+GitHub is one of several online hosting sites, that provide cloud-based storage for your git repositories (other options are GitLab and Bitbucket). This (and git) now integrate quite seamlessly with R, and particularly with RStudio, and we'll go through the steps of setting up R and GitHub to play nicely together. 
 
 The overall setup scheme is as follows:
 
