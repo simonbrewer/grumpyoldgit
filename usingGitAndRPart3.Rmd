@@ -37,7 +37,7 @@ grid.raster(img)
 
 Fig: Example of git repository with two branches (https://digitalvarys.com/git-branch-and-its-operations/)
 
-Note that it is also possible to checkout from a lower-level branch. If, for example, you have a working version of a new feature, you might want to check out a new branch based on this, where you could add an additional feature, or new method. This does not affect the working version, *and* doesn't mess with the main branch. In this example, a second branch is checked out from `feature1`, then merged back prior to the merge back to the main. 
+Note that it is also possible to checkout from a lower-level branch. If, for example, you have a working version of a new feature, you might want to check out a new branch based on this, where you could add an additional feature, or new method. This does not affect the working version, *and* doesn't mess with the main branch. In this example, a second branch is checked out from `feature1`, then merged back prior to the intermediate branch. The subsequent merge of this with the main branch will include all changes. 
 
 ```{r echo=FALSE, fig.asp=0.25}
 img <- readPNG("images/branches1.png")
@@ -46,7 +46,7 @@ grid.raster(img)
 
 Fig: Example with sub-branches (https://docs.github.com)
 
-If the intermediate branch is merged back and deleted, the lower level branch will be automatically re-assigned the next higher level branch
+If the intermediate branch is merged back and deleted, the lower level branch will be automatically re-assigned to the next higher level branch
 
 ```{r echo=FALSE, fig.asp=0.25}
 img <- readPNG("images/branches2.png")
@@ -57,7 +57,7 @@ Fig: Example with loss of higher level branch (https://docs.github.com)
 
 In the next section, we're going to look briefly at how to work with branches through the terminal (in case you want to work with non-R files), and then we'll go through the steps of working with branches through RStudio. 
 
-## Working with branches from the terminal
+# Working with branches from the terminal
 
 Open a terminal and change to one of your existing repositories. For example:
 
@@ -112,12 +112,81 @@ The `*` represent a pointer and indicates the current working repository. Make s
 touch myLittlePonyScript.txt
 ```
 
-This will just create a blank text file in your repository (sorry - the script is a secret). If you check git's status, it should list this file as an untracked change. 
+This will just create a blank text file in your repository (sorry - the script is a secret). If you run `git status`, it should list this file as an untracked change. Let's now add it to the branch and commit:
+
+```
+git add myLittlePonyScript.txt
+git commit -m "Added example text file"
 ```
 
+To demonstrate that this has not affected your `main` branch, first get the list of files from the new branch
+
+```
+git ls-files
+```
+
+Now change to the main branch, and list the associated files
+
+```
+git checkout main
+git ls-files
+```
+
+And you should **not** see the new file listed. You can also at this point add some text to the new file. Note that you need to change back to the new branch to do this:
+
+```
+git checkout devel
+echo "Once upon a time in the land of Equestria..." >> myLittlePonyScript.txt
+```
+
+Then stage and commit this change:
+
+```
+git add myLittlePonyScript.txt
+git commit -m "Added introduction..."
+```
+
+Once you have finished making all the changes, we can merge this back to the `main` branch. Remember that this would usually be done when you have checked and tested any changes you've made, and your code is production ready. If it is not, it is better to keep it on the working or development branch. 
+
+In order to merge, *you need to be on the branch you want to merge to.* In this example, that means moving back to the `main` branch
+
+```
+git checkout main
+git branch
+```
+
+If you are sure you are in the right place, we can now merge the `devel` branch using `git merge`. For this we need to specify the branch we want to use. We also include the `--no-ff` argument to copy over all the previous commits from this branch. Run the following command in the terminal
+
+```
+git merge devel --no-ff
+```
+
+And you should see something similar to the following output if successful:
+
+```
+Merge made by the 'recursive strategy'.
+ myLittlePonyScript.txt | 1 ++
+ 1 file changed, 1 insertion(+)
+ create model 100644 myLittlePonyScript.txt
+```
+
+Finally, we need to push the changes to GitHub:
+
+```
+git push
+```
+
+Once you see the confirmation notice, go to your GitHub page and check that the changes are visible there. 
+
+# Using RStudio
 
 
-To create this new branch, type “git checkout -b branchNameHere” (so, in our case, “git checkout -b hello_octo”).
+
+
+
+
+
+To create this new branch, type `git checkout -b branchNameHere` (so, in our case, “git checkout -b hello_octo”).
 
 Assuming nobody else has already made a branch named “hello_octo”, git returns “Switched to a new branch ‘hello_octo’.” (In the case where a branch by that name already exists, git would tell us instead “fatal: A branch named ‘hello_octo’ already exists.” No big deal, just do git checkout -b again with a new name variation).
 
