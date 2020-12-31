@@ -21,6 +21,8 @@ In the previous section, we went through the somewhat laborious steps of setting
 
 # Setup SSH
 
+[NOTE THAT THIS SECTION MAY NO LONGER BE NEEDED IF YOU HAVE USED GITHUB CREDENTIAL MANAGER]
+
 To avoid having to type in your GitHub password every time you make a request (commit, clone, etc), we can set up an SSH key pair. The key pair consists of a public and private key. The public key can be given to any server you want to connect to. When this is paired with a client that has the private key (your computer), the server unlocks without need for a password. 
 
 To do this, we need to 
@@ -190,7 +192,7 @@ The project will now be created and the files will be cloned from GitHub to your
 
 # Undoing changes
 
-git has a couple of methods for undoing commits made to your repository: `reset` and `revert`. 
+By far the safest way to 'undo' a change in your git repository is by correcting the problem and committing this with a suitable message. However, sometimes you may need to roll back your changes to a previous commit. git has a couple of methods for doing this: `reset` and `revert`. These are command line tools, so if you want to test them, you will need to open a terminal and change directory (`cd`) to your local repository. 
 
 ## `reset`
 
