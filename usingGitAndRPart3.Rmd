@@ -19,9 +19,10 @@ library(grid)
 
 # Working with branches in git
 
-In the previous couple of labs, we looked at how we can use git to work with a hosting service to have both an online and local copy of your code. While this can be a useful way to work to keep track of the progress you make while working, git really shines when using it to collaborate with others. 
+[NEEDS REVIEW]
+Sometimes you want to make big changes to your code without having to disturb your main stream of development. Maybe you want to break it up into multiple simple commits so you can easily track what you’re doing. Maybe you’re not sure what you’ve done is the best approach and you want someone else to review your code. Or, maybe you want to try something experimental (you can merge it back only if the experiment succeeds). 
 
-Collaboration in git is done using the concept of branches. When you initialize a git repository, this is created with a single branch, the default. This is shown whenever anyone visits your repository, and is the initial branch that you get when you clone a repository. You should consider this as the official working version of your project, and in general, you should not work with this branch in a collaborative project. By default, GitHub names the default branch `main` in any new repository (previously this was `master`).
+When you initialize a git repository, this is created with a single branch, the default. This is shown whenever anyone visits your repository, and is the initial branch that you get when you clone a repository. In general, you should consider this as the official working version of your project, and you should not work with this branch in a collaborative project. By default, GitHub names the default branch `main` in any new repository (previously this was `master`).
 
 > Do not mess with the master. If you make changes to the master branch of a group project while other people are also working on it, your on-the-fly changes will ripple out to affect everyone else and very quickly there will be merge conflicts, weeping, rending of garments, and plagues of locusts. It’s that serious.
 Unless you specify a different branch, the default branch in a repository is the base branch for new pull requests and code commits.[^1]
@@ -57,7 +58,7 @@ Fig: Example with loss of higher level branch (https://docs.github.com)
 
 In the next section, we're going to look briefly at how to work with branches through the terminal (in case you want to work with non-R files), and then we'll go through the steps of working with branches through RStudio. 
 
-# Working with branches from the terminal
+## Working with branches from the terminal
 
 Open a terminal and change to one of your existing repositories. For example:
 
@@ -184,6 +185,9 @@ Note: you can make branches using the SHA1 hash numbers of previous commits. Thi
 git checkout 7c709f0
 ```
 
+## Working with branches in RStudio
+
+
 # Dealing with conflicts
 
 While merging will work well most of the time, conflicts can occur if a file if the same part of the same file is changed on both branches that you are trying to merge.
@@ -225,12 +229,48 @@ please contact us at email.support@github.com
 </div>
 Now run git add index.html and git commit to finalize the merge. CONFLICTS RESOLVED.
 
-22.4.1 Bailing out
+## Bailing out
 
 If, during the merge, you get confused about the state of things or make a mistake, use git merge --abort to abort the merge and go back to the state prior to running git merge. Then you can try to complete the merge again.
 
 
-# Using RStudio
+# Working with others
+
+So far, we have looked at using git to work with your code and a hosting service to have both an online and local copy of your code. While this can be a useful way to work to keep track of the progress you make while working, git really shines when using it to collaborate with others. There are three main ways to use git for collaboration
+
+- Cloning a copy
+- Forking a copy 
+- Working as a team
+
+We'll look at each of these in turn, using the repositories you made at the end of the previous lab. You'll need to work in pairs or small groups for this lab.
+
+# Cloning a copy
+
+Cloning simply refers to making an exact copy of the current state of a repository to your own local computer, including information on the commits made to that repository. The main limitation to this approach is that the cloned repository is independent of the original, so any changes you make cannot be easily integrated into the original using git, but would have to be added by hand. Further, this means that if the code in the original repository is changed, this will not propagate to your copy. So why do this? If your main interest is in making a copy that you can develop separately to the original (i.e. changing the purpose or application of the code) then this is a great approach. It is also quite useful if you just want to check someones code to see how they tackled a given problem. It is also a fairly straightforward operation (we previously looked at how to clone someone else's GitHub repository from the command line). 
+
+## Cloning in RStudio
+
+To clone an existing repository in RStudio, we simply proceed in the same way as we would to set up a new project, with the exception that we do not need to make the new repository on GitHub first. Simply open RStudio, change to the directory holding your local repositories and start a new project. Click on [Version Control], then [Git] (Clone a project from a Git repository). 
+
+Now go to your partner's GitHub page and find the repository you want to copy. Click on the green [Code] button and copy the URL. Go back to RStudio and and enter this in the box labeled [Repository URL]. For the next box, either accept the given project directory name (this should be the same as the GitHub repository) or change this to a new one. The final box gives the directory where the repository will be cloned to on your computer. Make sure this is ok, and that the check-box [Start in new session] is checked. Now click [Create project] to make the new project, which should be automatically populated with the files from your partner's repository. 
+
+Note that cloning a repo in this way does **not** add it to your GitHub account (if you check your page you won't see it there). To add it:
+
+- Go to your GitHub page
+- Create a new repository with *exactly* the same name as your RStudio project
+- Do not check `Initialize this repository with a README`
+- Click [Create Project]
+
+Next, go to RStudio and open the R project file from the repository that you just cloned. 
+Open a shell by clicking [Tools] > [Shell], then run the following commands:
+
+```
+git remote set-url origin https://github.com/USERNAME/PROJECT.git
+git branch -M main
+git push -u origin main
+```
+
+Check that all this works, then delete this repository before moving to the next part. As a reminder, you need to delete the local folder holding the repository, then go to the GitHub page > [Settings], and scroll down to the danger zone at the end of the page. Click [Delete the repository] and follow the prompts. 
 
 
 
