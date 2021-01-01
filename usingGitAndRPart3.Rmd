@@ -283,19 +283,54 @@ Forking serves two purposes in git. First, it allows endless amounts of Good Pla
 
 ## Forking with RStudio
 
-The first step is to fork the repository of interest on GitHub. Go to your partner's GitHub page and find the repository of interest. On the landing page, look for the [Fork] button on the right-hand side of the page. This will make a new forked copy and take you to that page. If you look under the repository anme on the left hand side of the page you should see something like `forked from USERNAME`. Now you have this, you can clone it to your computer to create the local repo. You probably know the routine by now, but click on the green [Code] button and copy the URL. Open RStudio, go to [File] > [New Project]. Then click on [Version Control], select [Git] and enter the URL on the next page that appears. 
+The first step is to fork the repository of interest on GitHub. Go to your partner's GitHub page and find the repository of interest. On the landing page, look for the [Fork] button on the right-hand side of the page. This will make a new forked copy and take you to that page. If you look under the repository anme on the left hand side of the page you should see something like `forked from USERNAME`. Now you have this, you can clone it to your computer to create the local repo. You probably know the routine by now, but click on the green [Code] button and copy the URL. Open RStudio, go to [File] > [New Project]. Then click on [Version Control], select [Git] and enter the URL on the next page that appears. Now click [Create project] to clone the files and start your new project. 
 
-. For this next section, you are again going to work in pairs
+Assuming that you have been successful, you can now go ahead and make changes to the code before pushing this back to your GitHub. We'll look at how to propose these changes be including in the original project, and how the project owner can accept (or reject them). 
 
-- Cloning repo
-- Pull requests
-- Merging
-- Resolving (?)
+As an example, I'm going to assume that you forked the repository containing the `plot_ts()` function we made in the previous lab (but feel free to use a different repo and/or make different changes). Here, I'm going to modify the function to include a new argument `annoy_brian`, which will plot using **ggplot2** rather than base R graphics. The new function will look like this:
+
+```{r}
+plot_ts <- function(x, y, annoy_brian = FALSE, ...) {
+  library(ggplot2)
+  if (annoy_brian) {
+    ggplot(aes(x, y), data = data.frame(x, y)) + 
+      geom_line() + 
+      geom_smooth() +
+      theme_minimal()
+  } else {
+    fit <- mgcv::gam(y ~ s(x))
+    plot(x, y, type = 'l', ...)
+    lines(x, fitted(fit), col = 2, lwd = 2)
+  }
+}
+```
+
+Now load the CO$_2$ data and check that the modifications work:
+
+```{r eval=FALSE}
+source("plot_ts.R")
+co2 <- read.csv("co2_mm_mlo.csv")
+plot_ts(co2$decdate, co2$interpolated, annoy_brian = TRUE)
+```
+
+Once you finished with your changes and modifications, stage and commit your changes, then push to GitHub. In order to merge this back to the original repo, you need to create a *pull request*. If you now go to the repository page, you will see a banner telling you that your branch is ahead of the original branch, together with options to compare your changes and create a pull request.    
+
+```{r echo=FALSE, fig.asp=0.15}
+img <- readPNG("images/pull_request.png")
+grid.raster(img)
+```
+
+If you click the [Compare] icon, this will take you to a page that shows the difference between the files you have changed. Text in red has been removed, in green has been added. Note that at the top of this page there are drop down menus that allow you to also change between different forked repositories and different branches. If all the changes are ok, click on the green button [Create pull request]. You can now add a message describing the changes you have made, and why these should be incorporated into the original repository. Do this now, and then click [Create pull request] to submit the pull request.
+
+Once submitted, you'll see a page containing all the details that you added, as well as a message stating if there are any conflicts between the two branches. At the same time, an emai lwill have been sent to the owner of the original repository informing them of the pull request. 
+
+If someone else has forked a copy of your repo, then you should be receiving an email about their pull request. Either click the link in this email or go to your GitHub page, and you should see that there is a pull request listed. Click `Pull requests` to see all your outstanding PRs. Click on the one listed there, and you will see the details including the message accompanying the request. Assuming that there are no conflicts, all the remains to be done is to merge the request ([Merge pull request]). There is a field below this button for adding a comment, which can be used if there are issues with the proposed change. You can also close the pull request here without merging it. 
+
+While this will have merged the changes into your remote repository, the last thing we need to do is to update the local copy. Go back to RStudio and the R project associated with this repository. Click on [Pull] on the Git tab to download and merge the changes. You can check that this has worked by clicking on the [History] button to show the git log, or by simply opening the files that were changed to make sure the changes are there. 
+
+# Working as a team
 
 
-In the previous section, we went through the somewhat laborious steps of setting up your computer to talk to GitHub. We will now look at how collaborate with someone else on your repository, and the use of GitHub pages. 
-
-You can get a list of the branches for any repository by going to the GitHub page and clicking on the [master] button in the top left. This will show you a drop down list of the existing branches. 
 
 [^1]: https://thenewstack.io/dont-mess-with-the-master-working-with-branches-in-git-and-github/
 
