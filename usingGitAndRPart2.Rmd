@@ -13,11 +13,13 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(png)
+library(grid)
 ```
 
 # R and GitHub
 
-In the previous section, we went through the somewhat laborious steps of setting up your computer to talk to GitHub. We will now look at how to integrate this with R/RStudio, how to set up a R project with GitHub, and how to clone an existing repository. 
+In the previous section, we went through the somewhat laborious steps of setting up your computer to talk to GitHub. We will now look at how to integrate this with R/RStudio, how to set up a R project with GitHub, and the use of GitHub Pages. 
 
 # Setup SSH
 
@@ -177,9 +179,16 @@ plot_ts(co2$decdate, co2$interpolated, main = "Mauna Loa CO2 record")
 
 Now commit and push this to GitHub (note that this will push the previous commit as well). Finally, go back to your browser and check that everything has uploaded correctly. 
 
+If you want to see a list of the changes that you have made (i.e. the equivalent to `git log`), simply click the [History] button in the Git tab in RStudio to show a window with the individual commits (top panel) and the diffs (changes; bottom panel):
+
+```{r echo=FALSE}
+img <- readPNG("images/git_history.png")
+grid.raster(img)
+```
+
 # Cloning another repository
 
-Finally, you are going to clone your partner's repository:
+Now clone your partner's repository:
 
 - First, close RStudio
 - Go to their GitHub page and find the repository that they have just made. Click the green [Code] button and copy the link.  
@@ -189,6 +198,12 @@ Finally, you are going to clone your partner's repository:
 - Make sure the the directory where the local copy of the repository will be kept is ok and click [Create project].
 
 The project will now be created and the files will be cloned from GitHub to your computer. 
+
+# GitHub pages
+
+If you click on the name of any of the files in your repository, GitHub will show you the contents as long as they are text files. If you add an HTML document to your repo, GitHub will not try to render it, but simply show you the underlying code. If you want to show the rendered HTML, you need to use GitHub pages instead. This requires a little more set up, but is worth knowing as you can generate HTML pages using R Markdown, then push these and make them publicly visible. 
+
+You can do these steps in one of your existing repositories or create a new one. Either way, make sure that you have an R project that is linked to a GitHub repository. 
 
 # Undoing changes
 
