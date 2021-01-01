@@ -140,7 +140,7 @@ This will open a form with several options. Enter the following:
 
 Click button [Create repository.]
 
-Once this is created, we will now link to this from your computer. Click the green button [Code], and copy the HTTPS URL (if you click on the little clipboard icon this will get copied to your clipboard).
+This has created the remote copy of your repository. We now need to link this to a local copy on your computer. Click the green button [Code], and copy the HTTPS URL (if you click on the little clipboard icon this will get copied to your clipboard).
 
 Go back to the terminal on your computer. Change your working directory until you are somewhere where you are happy to be making a copy of your repository. In a terminal:
 
@@ -259,6 +259,13 @@ To https://github.com/grumpy-old-git/myrepo.git
 Now let's check to see if the local change propagated to the GitHub repository. Go back to your GitHub page and refresh the repository page. You should now see the new line in the README file.
 
 While the README file is automatically shown when you access the directory, you can also look at the content of any other file you have added to the repository. Click on [Code], at the top of the page, then select any file (there will probably only be the README file for now). If the file is a text file, the content will be displayed in the window. This window allows you to track past changes in the file by clicking on the 'History' link on the right hand side. For now, this will just show the initial commit when the repository was made, and the update to the README file. At the far right hand side of this page is a small icon that looks like this `<>` for each commit. Clicking this will show you the files in the repository *before* that commit was made, which allows you to track the changes made by yourself (and others). 
+
+# Pulling changes from GitHub
+
+If there have been any changes to the remote repository, we need to update the local one to reflect these. To do this, we need to git's `pull` function. 
+
+UPDATE README
+PULL
 
 # Adding files
 
