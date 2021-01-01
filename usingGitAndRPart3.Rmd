@@ -265,14 +265,25 @@ Next, go to RStudio and open the R project file from the repository that you jus
 Open a shell by clicking [Tools] > [Shell], then run the following commands:
 
 ```
-git remote set-url origin https://github.com/USERNAME/PROJECT.git
+git remote set-url origin https://github.com/USERNAME/REPOSITORY.git
 git branch -M main
 git push -u origin main
 ```
 
 Check that all this works, then delete this repository before moving to the next part. As a reminder, you need to delete the local folder holding the repository, then go to the GitHub page > [Settings], and scroll down to the danger zone at the end of the page. Click [Delete the repository] and follow the prompts. 
 
+# Forking a copy
 
+```{r echo=FALSE, fig.asp=0.5}
+img <- readPNG("images/forking.png")
+grid.raster(img)
+```
+
+Forking serves two purposes in git. First, it allows endless amounts of Good Place jokes and second it allows you to copy another person's repository, but retain a link to the original repository. This is an ideal solution if you want to contribute code to an existing project. Forking creates your own local and remote repository and you can modify the code and commit it using the methods we have previously looked at. This allows several people to be working independently on a project, but without access to the official repository. Only the project maintainer can push to the official repository, and can then decide which of the commits proposed by developers get included in the official version. 
+
+## Forking with RStudio
+
+The first step is to fork the repository of interest on GitHub. Go to your partner's GitHub page and find the repository of interest. On the landing page, look for the [Fork] button on the right-hand side of the page. This will make a new forked copy and take you to that page. If you look under the repository anme on the left hand side of the page you should see something like `forked from USERNAME`. Now you have this, you can clone it to your computer to create the local repo. You probably know the routine by now, but click on the green [Code] button and copy the URL. Open RStudio, go to [File] > [New Project]. Then click on [Version Control], select [Git] and enter the URL on the next page that appears. 
 
 . For this next section, you are again going to work in pairs
 

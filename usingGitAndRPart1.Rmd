@@ -42,7 +42,7 @@ The overall setup scheme is as follows:
 4. Link git to your account
 5. Connect R to git and GitHub
 
-We'll tackle the first 4 of these in this document.
+We'll tackle the first 4 of these in this lab, and go through some basics of working with git on the command line.
 
 ## Setting up a GitHub account
 
@@ -172,7 +172,7 @@ cd rgithub
 Once you have changed directory to where you want the local files saved, make a clone of your repository by typing the following into the terminal:
 
 ```
-git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY.git
+git clone https://github.com/USERNAME/REPOSITORY.git
 ```
 
 Replace the `https://` address with the URL copied from GitHub. git will now make a new directory with the name of your repository and copy all files from GitHub to this directory. You should see something similar to the following output if this has been successful:
