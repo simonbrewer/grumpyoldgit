@@ -188,52 +188,6 @@ git checkout 7c709f0
 ## Working with branches in RStudio
 
 
-# Dealing with conflicts
-
-While merging will work well most of the time, conflicts can occur if a file if the same part of the same file is changed on both branches that you are trying to merge.
-
-git merge issue-5
-# Auto-merging index.html
-# CONFLICT (content): Merge conflict in index.html
-# Automatic merge failed; fix conflicts and then commit the result.
-The first thing to do is NOT PANIC. Merge conflicts are not the end of the world and most are relatively small and straightforward to resolve.
-
-The first step to solving a merge conflict is determining which files are in conflict, which you can do with git status:
-
-git status
-# On branch master
-# You have unmerged paths.
-#   (fix conflicts and run "git commit")
-# 
-# Unmerged paths:
-#   (use "git add <file>..." to mark resolution)
-# 
-#     both modified:      index.html
-# 
-# no changes added to commit (use "git add" and/or "git commit -a")
-So this shows only index.html is unmerged and needs to be resolved. We can then open the file to see what lines are in conflict.
-
-<<<<<<< HEAD:index.html
-<div id="footer">contact : email.support@github.com</div>
-=======
-<div id="footer">
- please contact us at support@github.com
-</div>
->>>>>>> issue-5:index.html
-In this conflict, the lines between <<<<<< HEAD:index.html and ====== are the content from the branch you are currently on. The lines between ======= and >>>>>>> issue-5:index.html are from the feature branch we are merging.
-
-To resolve the conflict, edit this section until it reflects the state you want in the merged result. Pick one version or the other or create a hybrid. Also remove the conflict markers <<<<<<, ====== and >>>>>>.
-
-<div id="footer">
-please contact us at email.support@github.com
-</div>
-Now run git add index.html and git commit to finalize the merge. CONFLICTS RESOLVED.
-
-## Bailing out
-
-If, during the merge, you get confused about the state of things or make a mistake, use git merge --abort to abort the merge and go back to the state prior to running git merge. Then you can try to complete the merge again.
-
-
 # Working with others
 
 So far, we have looked at using git to work with your code and a hosting service to have both an online and local copy of your code. While this can be a useful way to work to keep track of the progress you make while working, git really shines when using it to collaborate with others. There are three main ways to use git for collaboration
@@ -329,6 +283,86 @@ If someone else has forked a copy of your repo, then you should be receiving an 
 While this will have merged the changes into your remote repository, the last thing we need to do is to update the local copy. Go back to RStudio and the R project associated with this repository. Click on [Pull] on the Git tab to download and merge the changes. You can check that this has worked by clicking on the [History] button to show the git log, or by simply opening the files that were changed to make sure the changes are there. 
 
 # Working as a team
+
+The last method that we'll look at for collaboration through git is by setting up a team. Unlike forking, this sets a single repository but allows every team member to add changes. The downside to this is that it makes it easier for problems and conflicts to arise through miscommunication or lack of planning. To minimize problems, it is recommended that:
+
+- Each team member works on their own branch of the repository
+- One team member is nominated to control merging the different branches as development proceeds
+
+## Setting up collaborators on GitHub
+
+We'll do this exercise in pairs again. Each person should start creating a new repository on GitHub, and initialize with a README. Either use an existing repository or create a new one for this exercise. I'd recommend doing the latter just to get more experience in setting up repositories: open RStudio and create a new project using version control. Get the URL from GitHub to link the project to your new repo. (You should be fairly familiar with doing this by now, but refer back to yesterday's lab.)
+
+We'll now add your partner as a collaborator. Go to your repository on GitHub, click on [Settings] at the top of the page and select [Manage access] from the left hand menu. On the next page, click the green button [Invite a collaborator]. You may be prompted for your password, then this will open a search window where you can find other people on GitHub by their user name or email. Find your partner, then click the button [Add USERNAME to this repository]. They should now receive an email letting them know that you have added them as a collaborator. 
+
+```{r echo=FALSE, fig.asp=0.35}
+img <- readPNG("images/add_collaborator.png")
+grid.raster(img)
+```
+
+If you're received an email inviting you to collaborate, you need to clone this repository (don't fork it!). Go to the linked Github Repo page, and copy the URL. Now go to your RStudio, create a new project using version control and use the copied URL. Once everything is set up, create a branch for the additions you are going to make by clicking on the little icon with the purple boxes in the top right of the Git tab in RStudio. Add a new branch called `test`, and initialize it.
+
+Add some R code in a script, save it and stage/commit/push to GitHub. One you are done, submit a pull request for this work to merge the `test` branch back into `main`. Now either you or your partner can accept this pull request. 
+
+As you have now updated the remote copy of `main` you will need to pull these changes back to your local repository. Go to RStudio and use the dropdown menu in the top right of the Git tab to change back to `main`. Now click the [Pull] button to download all the updates. You can also delete the `test` branch now by switching to the terminal and typing
+
+```
+git branch -d test
+```
+
+# Dealing with conflicts
+
+While merging will work well most of the time, conflicts can occur if a file if the same part of the same file is changed on both branches that you are trying to merge.
+
+git merge issue-5
+# Auto-merging index.html
+# CONFLICT (content): Merge conflict in index.html
+# Automatic merge failed; fix conflicts and then commit the result.
+The first thing to do is NOT PANIC. Merge conflicts are not the end of the world and most are relatively small and straightforward to resolve.
+
+The first step to solving a merge conflict is determining which files are in conflict, which you can do with git status:
+
+git status
+# On branch master
+# You have unmerged paths.
+#   (fix conflicts and run "git commit")
+# 
+# Unmerged paths:
+#   (use "git add <file>..." to mark resolution)
+# 
+#     both modified:      index.html
+# 
+# no changes added to commit (use "git add" and/or "git commit -a")
+So this shows only index.html is unmerged and needs to be resolved. We can then open the file to see what lines are in conflict.
+
+<<<<<<< HEAD:index.html
+<div id="footer">contact : email.support@github.com</div>
+=======
+<div id="footer">
+ please contact us at support@github.com
+</div>
+>>>>>>> issue-5:index.html
+In this conflict, the lines between <<<<<< HEAD:index.html and ====== are the content from the branch you are currently on. The lines between ======= and >>>>>>> issue-5:index.html are from the feature branch we are merging.
+
+To resolve the conflict, edit this section until it reflects the state you want in the merged result. Pick one version or the other or create a hybrid. Also remove the conflict markers <<<<<<, ====== and >>>>>>.
+
+<div id="footer">
+please contact us at email.support@github.com
+</div>
+Now run git add index.html and git commit to finalize the merge. CONFLICTS RESOLVED.
+
+## Bailing out
+
+If, during the merge, you get confused about the state of things or make a mistake, use git merge --abort to abort the merge and go back to the state prior to running git merge. Then you can try to complete the merge again.
+
+
+And if all else fails:
+
+```{r echo=FALSE}
+img <- readPNG("images/git_xkcd.png")
+grid.raster(img)
+```
+
 
 
 
