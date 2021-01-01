@@ -262,10 +262,31 @@ While the README file is automatically shown when you access the directory, you 
 
 # Pulling changes from GitHub
 
-If there have been any changes to the remote repository, we need to update the local one to reflect these. To do this, we need to git's `pull` function. 
+If there have been any changes to the remote repository, we need to update the local one to reflect these. To do this, we need to git's `pull` function. To demonstrate how this works, first go to your remote repository on GitHub. Scroll down to where the contents of the README.md file are shown, and click on the pencil icon in the top right to edit this. 
 
-UPDATE README
-PULL
+```{r echo=FALSE, fig.asp=0.15}
+img <- readPNG("images/edit_readme.png")
+grid.raster(img)
+```
+
+Enter some text and then scroll down and click [Commit changes]. Go back to the main repository page and check that the new text is visible. No go back to your terminal and type 
+
+```
+git pull
+```
+
+And your changes will be downloaded from the server. In the output from the command thre should be a brief description of the changes:
+
+```
+    Fast-forward
+     README.md | 2 +-
+     1 file changed, 1 insertion(+), 1 deletion(-)
+```
+
+
+Note that if there are no changes, running `git pull` simply stop with the message `Already up to date`, and not modify anything. As a result, there's little risk in running this command, and it's good practice to pull every time that you start working on a repository, particularly if these are collaborative. 
+
+> Whether you haven’t opened RStudio in a month or you’ve just been away for a lunch break, pull. It might not be necessary, but it can save a lot of heartache later.
 
 # Adding files
 
