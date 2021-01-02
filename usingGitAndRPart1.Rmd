@@ -348,7 +348,175 @@ Once you have done this, clone your partner's repository onto your computer. To 
 - Go to your terminal and type `cd ..` to change to the higher level directory 
 - Clone the repo: `git clone https://github.com/NAME/REPOSITORY.git` (but replace the https link with the link that you copied)
 
-If you have got to this point, you now have a successfully working git installation. We will next look at how to integrate this properly with R/RStudio.
+If you have got to this point, you now have a successfully working git installation. In the next lab we will look at how to integrate this with R/RStudio.
+
+# Working with branches in git
+
+[NEEDS REVIEW]
+Sometimes you want to make big changes to your code without having to disturb your main stream of development. Maybe you want to break it up into multiple simple commits so you can easily track what you’re doing. Maybe you’re not sure what you’ve done is the best approach and you want someone else to review your code. Or, maybe you want to try something experimental (you can merge it back only if the experiment succeeds). 
+
+When you initialize a git repository, this is created with a single branch, the default. This is shown whenever anyone visits your repository, and is the initial branch that you get when you clone a repository. In general, you should consider this as the official working version of your project, and you should not work with this branch in a collaborative project. By default, GitHub names the default branch `main` in any new repository (previously this was `master`).
+
+> Do not mess with the master. If you make changes to the master branch of a group project while other people are also working on it, your on-the-fly changes will ripple out to affect everyone else and very quickly there will be merge conflicts, weeping, rending of garments, and plagues of locusts. It’s that serious.
+Unless you specify a different branch, the default branch in a repository is the base branch for new pull requests and code commits.[^1]
+
+In a collaborative project, you should create new branches for each particular thing that you are working on. For example, each person can check out their own branch, or you can have a branch for each feature that is being added to a project. When the work on that particular feature is complete and tested, it can then be rolled back into the default `main` branch and made available there. git manages branches through a system of *checkouts* that create new branches, and *pull requests* that propose a set of changes to a higher level branch. Once the pull request has been accepted and the branch is merged back, then the branch should be deleted.
+
+In this example, a default repository (`master`) has been established (green line). Two branches are then checked out, each set up to work on a single new feature (`feature1`, `feature2`). When feature 1 is complete, this is merged back to the `master` branch, through a pull request, followed by a second merge for feature 2. 
+
+```{r echo=FALSE, fig.asp=0.55}
+img <- readPNG("images/branches0.png")
+grid.raster(img)
+```
+
+Fig: Example of git repository with two branches (https://digitalvarys.com/git-branch-and-its-operations/)
+
+Note that it is also possible to checkout from a lower-level branch. If, for example, you have a working version of a new feature, you might want to check out a new branch based on this, where you could add an additional feature, or new method. This does not affect the working version, *and* doesn't mess with the main branch. In this example, a second branch is checked out from `feature1`, then merged back prior to the intermediate branch. The subsequent merge of this with the main branch will include all changes. 
+
+```{r echo=FALSE, fig.asp=0.25}
+img <- readPNG("images/branches1.png")
+grid.raster(img)
+```
+
+Fig: Example with sub-branches (https://docs.github.com)
+
+If the intermediate branch is merged back and deleted, the lower level branch will be automatically re-assigned to the next higher level branch
+
+```{r echo=FALSE, fig.asp=0.25}
+img <- readPNG("images/branches2.png")
+grid.raster(img)
+```
+
+Fig: Example with loss of higher level branch (https://docs.github.com)
+
+## Working with branches from the terminal
+
+In this section, we're going to look briefly at how to work with branches through the terminal (in case you want to work with non-R files). Open a terminal and change to one of your existing repositories. For example:
+
+```
+cd /Users/username/Desktop/github/myrepo
+```
+
+You can get a list through the terminal by typing `git branch -a`. If you try this for any of your existing repositories, you should see something like the following, indicating that only the main branch exists. 
+
+```
+* main
+  remotes/origin/HEAD -> origin/main
+  remotes/origin/main
+```
+
+We are now going to make a new branch of this repository. I'm going to call it `devel` to represent a development branch, but feel free to use a different/more amusing name. To create this, simply type:
+
+```
+git checkout -b devel
+```
+
+As long as there is no existing branch with this name, you should see the following message:
+
+```
+    Switched to a new branch 'devel'
+```
+
+You can also use `git checkout` to switch between branches. To go back to the main branch:
+
+```
+git checkout main
+```
+
+And to switch back to the new branch:
+
+```
+git checkout devel
+```
+
+If you now run `git branch -a`, you should see the following output (or close to it):
+
+```
+* devel
+  main
+  remotes/origin/HEAD -> origin/main
+  remotes/origin/main
+```
+
+The `*` represent a pointer and indicates the current working repository. Make sure that this is pointing to your new branch, and then let's add a file
+
+```
+touch myLittlePonyScript.txt
+```
+
+This will just create a blank text file in your repository (sorry - the script is a secret). If you run `git status`, it should list this file as an untracked change. Let's now add it to the branch and commit:
+
+```
+git add myLittlePonyScript.txt
+git commit -m "Added example text file"
+```
+
+To demonstrate that this has not affected your `main` branch, first get the list of files from the new branch
+
+```
+git ls-files
+```
+
+Now change to the main branch, and list the associated files
+
+```
+git checkout main
+git ls-files
+```
+
+And you should **not** see the new file listed. You can also at this point add some text to the new file. Note that you need to change back to the new branch to do this:
+
+```
+git checkout devel
+echo "Once upon a time in the land of Equestria..." >> myLittlePonyScript.txt
+```
+
+Then stage and commit this change:
+
+```
+git add myLittlePonyScript.txt
+git commit -m "Added introduction..."
+```
+
+Once you have finished making all the changes, we can merge this back to the `main` branch. Remember that this would usually be done when you have checked and tested any changes you've made, and your code is production ready. If it is not, it is better to keep it on the working or development branch. 
+
+In order to merge, *you need to be on the branch you want to merge to.* In this example, that means moving back to the `main` branch
+
+```
+git checkout main
+git branch
+```
+
+If you are sure you are in the right place, we can now merge the `devel` branch using `git merge`. For this we need to specify the branch we want to use. We also include the `--no-ff` argument to copy over all the previous commits from this branch. Run the following command in the terminal
+
+```
+git merge devel --no-ff
+```
+
+And you should see something similar to the following output if successful:
+
+```
+Merge made by the 'recursive strategy'.
+ myLittlePonyScript.txt | 1 ++
+ 1 file changed, 1 insertion(+)
+ create model 100644 myLittlePonyScript.txt
+```
+
+Finally, we need to push the changes to GitHub:
+
+```
+git push
+```
+
+Once you see the confirmation notice, go to your GitHub page and check that the changes are visible there. 
+
+Note: you can make branches using the SHA1 hash numbers of previous commits. This is an excellent way to go back and check some old code prior to resetting or reverting. For example:
+
+```
+git checkout 7c709f0
+```
+
+
 
 [g4wID]: https://gitforwindows.org
 [gitID]: https://git-scm.com/downloads
