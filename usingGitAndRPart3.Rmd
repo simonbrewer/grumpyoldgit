@@ -17,10 +17,6 @@ library(png)
 library(grid)
 ```
 
-# Working with branches in RStudio
-
-[STILL TO DO]
-
 # Working with others
 
 So far, we have looked at using git to work with your code and a hosting service to have both an online and local copy of your code. While this can be a useful way to work to keep track of the progress you make while working, git really shines when using it to collaborate with others. There are three main ways to use git for collaboration

@@ -76,7 +76,9 @@ abline(fit, col=2)
 
 Run to check your code (and the beautiful plot you get), and then stage, commit and push your changes. Make any other changes that you would like to, and when you are done, commit these and then close RStudio. 
 
-# Cloning a different repository
+# Using branches in RStudio
+
+[NEEDS UPDATES]
 
 In this section, we'll look at how you can clone the code from someone else's repository. This will make your own copy of the code that you can then go ahead and modify for your own use. Note that this copy is then independent of the source repository, and *any changes you make will only apply to your copy, not to the original source*. This is mainly used if you want to copy some code for your own purposes, and not collaborate on code development. For this section, you will again need to work in pairs or small groups. To start:
 
