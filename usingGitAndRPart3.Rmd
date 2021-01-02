@@ -147,7 +147,7 @@ git branch -d test
 
 While merging will work well most of the time, conflicts can occur if a file if the same part of the same file is changed on both branches that you are trying to merge. git tracks changes line-by-line in any file, so if collaborators are working on different parts of the same file, this won't cause a problem. However, when collaborators work on the same lines within the same file, this will lead to **merge conflicts**. Dealing with these can be frustrating as you will need to find the conflicts and decide which to keep and which to drop. 
 
-The easiest to understand how to deal with a conflict is with an example. We'll walk through a simple example here, then you and your partner should try to recreate this using the repository that you set up in the previous step. In our example, two people are collaborating on a project; let's call them Brian and Blake. Both of them add some text to line 4 of the README.md file. Brian adds:
+The easiest to understand how to deal with a conflict is with an example[^2]. We'll walk through a simple example here, then you and your partner should try to recreate this using the repository that you set up in the previous step. In our example, two people are collaborating on a project; let's call them Brian and Blake. Both of them add some text to line 3 of the README.md file. Brian adds:
 
 ```
 Brian says do NOT use ggplot2
@@ -166,49 +166,52 @@ Brian then runs through the usual stages of collaborative working with git:
 - commit
 - push
 
-Blake (who, let's say, had been distracted by an online auction of Jar-Jar Binks memorabilia) then starts to run through the same steps, but when he pulls updates, he gets the following message:
+Blake (who, let's say, had been distracted by an online auction of Jar-Jar Binks memorabilia) then starts to run through the same steps, but when he pulls updates before making his commit, he gets the following message:
 
+```{r echo=FALSE, fig.asp=0.35}
+img <- readPNG("images/conflict_message.png")
+grid.raster(img)
+```
 
+So he was not able to pull the updates, as these would overwrite the local changes. As git doesn't know the correct version it makes you choose. The options given are to either commit the local work first (prior to pulling), or 'stash it' (basically making a copy of the local work outside of the repository and then reverting the *local* changes). As Blake nearly always does what he is told, he tries the first of these, by staging and committing through RStudio. Unfortunately, this still doesn't work, and he gets a message that there is still a conflict:
 
+```{r echo=FALSE, fig.asp=0.35}
+img <- readPNG("images/merge_conflict.png")
+grid.raster(img)
+```
 
+All that has happened is that we've moved the problem along but not resolved it. The issue remains that both contributors have changed the same line, and Blake can neither pull the remote changes or push the local ones. Note that conflicted file is now marked with orange `U`s in the Git tab to indicate that there is an unresolved conflict. In the 'Review changes' panel, there was a preview of the changes,a nd if you now open the README.md file, you will see this:
 
-
-git merge issue-5
-# Auto-merging index.html
-# CONFLICT (content): Merge conflict in index.html
-# Automatic merge failed; fix conflicts and then commit the result.
-The first thing to do is NOT PANIC. Merge conflicts are not the end of the world and most are relatively small and straightforward to resolve.
-
-The first step to solving a merge conflict is determining which files are in conflict, which you can do with git status:
-
-git status
-# On branch master
-# You have unmerged paths.
-#   (fix conflicts and run "git commit")
-# 
-# Unmerged paths:
-#   (use "git add <file>..." to mark resolution)
-# 
-#     both modified:      index.html
-# 
-# no changes added to commit (use "git add" and/or "git commit -a")
-So this shows only index.html is unmerged and needs to be resolved. We can then open the file to see what lines are in conflict.
-
-<<<<<<< HEAD:index.html
-<div id="footer">contact : email.support@github.com</div>
+```
+<<<<<<< HEAD
+Blake says ALWAYS use ggplot2
 =======
-<div id="footer">
- please contact us at support@github.com
-</div>
->>>>>>> issue-5:index.html
-In this conflict, the lines between <<<<<< HEAD:index.html and ====== are the content from the branch you are currently on. The lines between ======= and >>>>>>> issue-5:index.html are from the feature branch we are merging.
+Brian says do NOT use ggplot2
+>>>>>>> 35a2c18e7a139ee02e3af6ba21416628f1ee185d
+```
 
-To resolve the conflict, edit this section until it reflects the state you want in the merged result. Pick one version or the other or create a hybrid. Also remove the conflict markers <<<<<<, ====== and >>>>>>.
+git has updated the local file to provide detail on the changes, bounded by `<<<<<<< HEAD` and `>>>>>>> commit identifier`. The upper text is the local copy and the text below the `=======` is the remote copy. Blake now has to choose which line to keep, and delete everything else. In this case, he's feeling daring and will keep his own line, so he will need to delete the `<<<<<<< HEAD`, `=======`, `>>>>>>> commit identifier` and Brian's text. 
 
-<div id="footer">
-please contact us at email.support@github.com
-</div>
-Now run git add index.html and git commit to finalize the merge. CONFLICTS RESOLVED.
+Now, he stages, adds a commit message (e.g.`resolving merge conflict`). If everything checks out, he gets the following message:
+
+```{r echo=FALSE, fig.asp=0.35}
+img <- readPNG("images/resolved_conflict.png")
+grid.raster(img)
+```
+
+He can then push this to GitHub. If there is a still a conflict, he can just repeat this process until everything is resolved. Note that when Brian next works on the repo, he will need to pull these changes. 
+
+## Roll your own conflict
+
+Now try to follow the steps of this example with your partner. You can either use an existing repository and invite the other person to collaborate, or set up a new one specifically for the purposes of this exercise. The steps are:
+
+- Establish a collaborative repository
+- Both people edit the same line in a file
+- Person 1 pulls, then stages, commits and pushes their changes
+- Person 2 tries to pull, then 
+    - Resolves the conflict
+    - Stages, commits and pushes
+- Person 1 pulls the new changes
 
 ## Bailing out
 
@@ -226,6 +229,7 @@ Fig: https://xkcd.com/1597/
 
 
 [^1]: https://thenewstack.io/dont-mess-with-the-master-working-with-branches-in-git-and-github/
+[^2]: Modified from https://ohi-science.org/data-science-training
 
 [g4wID]: https://gitforwindows.org
 [gitID]: https://git-scm.com/downloads
