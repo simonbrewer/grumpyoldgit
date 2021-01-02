@@ -21,62 +21,9 @@ library(grid)
 
 In the previous section, we went through the somewhat laborious steps of setting up your computer to talk to GitHub. We will now look at how to integrate this with R/RStudio, how to set up a R project with GitHub, and the use of GitHub Pages. 
 
-# Setup SSH
+# R projects and GitHub
 
-[NOTE THAT THIS SECTION MAY NO LONGER BE NEEDED IF YOU HAVE USED GITHUB CREDENTIAL MANAGER]
-
-To avoid having to type in your GitHub password every time you make a request (commit, clone, etc), we can set up an SSH key pair. The key pair consists of a public and private key. The public key can be given to any server you want to connect to. When this is paired with a client that has the private key (your computer), the server unlocks without need for a password. 
-
-To do this, we need to 
-
-- Generate the SSH key pair
-- Add the private key to your local SSH client
-- Add the public key to GitHub
-
-There are a variety of ways of doing this, but the easiest is to rely on built-in tools in RStudio, so start this up now. 
-
-First, it's worth checking to see if there is already an existing key pair. Go to [Tools] > [Global Options] > [Git/SVN]. If you see something like `~/.ssh/id_rsa` in the SSH RSA Key box, you have existing keys that can be used, and you can skip the next section. If you don't see anything, but you know that there should be a key already present, you can check this by looking at the contents of the `.ssh` directory on your computer:
-
-```
-ls -al ~/.ssh/
-```
-
-If you see a different key pair present, you can use these later on.
-
-If not, you can generate a key pair by clicking on the [Create RSA Key...] button. RStudio will prompt you for a passphrase, but it is probably easiest to skip this for now and add it later. Click [Create] and RStudio will generate an SSH key pair, stored in the files ~/.ssh/id_rsa and ~/.ssh/id_rsa.pub (and the first of these should be shown in the SSH RSA Key box.
-
-Now let's add the private key to the local ssh agent. You will need to do this from a terminal. Again, the easiest way is to open the terminal in RStudio (go to [Tools] > [Terminal] > [New Terminal]) to open a terminal in the console panel. Here, first type the following to check that `ssh-agent` (the local SSH client) is running:
-
-```
-eval "$(ssh-agent -s)"
-```
-And you should see a process ID like this:
-```
-# Agent pid 95727
-```
-
-Now add the key you have created using the following command:
-```
-ssh-add ~/.ssh/id_rsa
-```
-
-Note that if your key pair has a different name, you will need to use that here. 
-
-Finally, we need to add the public key to GitHub. Go to [Tools] > [Global Options] > [Git/SVN]. If your key pair has the usual name, id_rsa.pub and id_rsa, RStudio will see it and offer to “View public key”. Do that and accept the offer to copy to your clipboard. If your key pair is named differently, open it using a text editor and copy the contents to your clipboard.
-
-Now open a browser, go to [GitHub][ghID] and sign in. Click on the profile picture in the top right hand corner and go to [Settings] > [SSH and GPG keys]. Click [New SSH key] and then paste what you just copied into this box. Give it a title (this can be anything you like) and click [Add SSH key]. 
-
-And that's it! If you've made it this far, everything should be in place for you to connect to GitHub directly as you use R. To test the connection, go back to the terminal on your computer and enter the following:
-
-```
-ssh -T git@github.com
-```
-
-And you should see a confirmation that the RSA host key has been permanently added. 
-
-# RStudio and GitHub
-
-Now, we can now connect up RStudio with GitHub. There are a couple of ways of doing this, but the following method is pretty reliable. 
+There are a couple of ways of doing this, but the following method is pretty reliable. 
 
 ## Make a new repository on GitHub
 
@@ -129,7 +76,7 @@ abline(fit, col=2)
 
 Run to check your code (and the beautiful plot you get), and then stage, commit and push your changes. Make any other changes that you would like to, and when you are done, commit these and then close RStudio. 
 
-# Cloning an existing repository
+# Cloning a different repository
 
 In this section, we'll look at how you can clone the code from someone else's repository. This will make your own copy of the code that you can then go ahead and modify for your own use. Note that this copy is then independent of the source repository, and *any changes you make will only apply to your copy, not to the original source*. This is mainly used if you want to copy some code for your own purposes, and not collaborate on code development. For this section, you will again need to work in pairs or small groups. To start:
 
@@ -186,7 +133,7 @@ img <- readPNG("images/git_history.png")
 grid.raster(img)
 ```
 
-# Cloning another repository
+## Cloning another repository
 
 Now clone your partner's repository:
 
@@ -289,6 +236,61 @@ In general, this is the preferred method for undoing changes, particularly with 
 # Deleting GitHub repositories
 
 We've made quite a few example repositories so far. If you would like to delete any git repository, you will need to both delete the local copy and the one hosted by GitHub. The local copy can be deleted like any normal folder on your computer. The remote copy can be deleted by going to the repository page on GitHub, clicking on [Settings], scrolling all the way down to the Danger Zone[^1], and selecting [Delete this repository].
+
+# Appendix: Setup SSH
+
+[NOTE THAT THIS SECTION MAY NO LONGER BE NEEDED IF YOU HAVE USED GITHUB CREDENTIAL MANAGER]
+
+To avoid having to type in your GitHub password every time you make a request (commit, clone, etc), we can set up an SSH key pair. The key pair consists of a public and private key. The public key can be given to any server you want to connect to. When this is paired with a client that has the private key (your computer), the server unlocks without need for a password. 
+
+To do this, we need to 
+
+- Generate the SSH key pair
+- Add the private key to your local SSH client
+- Add the public key to GitHub
+
+There are a variety of ways of doing this, but the easiest is to rely on built-in tools in RStudio, so start this up now. 
+
+First, it's worth checking to see if there is already an existing key pair. Go to [Tools] > [Global Options] > [Git/SVN]. If you see something like `~/.ssh/id_rsa` in the SSH RSA Key box, you have existing keys that can be used, and you can skip the next section. If you don't see anything, but you know that there should be a key already present, you can check this by looking at the contents of the `.ssh` directory on your computer:
+
+```
+ls -al ~/.ssh/
+```
+
+If you see a different key pair present, you can use these later on.
+
+If not, you can generate a key pair by clicking on the [Create RSA Key...] button. RStudio will prompt you for a passphrase, but it is probably easiest to skip this for now and add it later. Click [Create] and RStudio will generate an SSH key pair, stored in the files ~/.ssh/id_rsa and ~/.ssh/id_rsa.pub (and the first of these should be shown in the SSH RSA Key box.
+
+Now let's add the private key to the local ssh agent. You will need to do this from a terminal. Again, the easiest way is to open the terminal in RStudio (go to [Tools] > [Terminal] > [New Terminal]) to open a terminal in the console panel. Here, first type the following to check that `ssh-agent` (the local SSH client) is running:
+
+```
+eval "$(ssh-agent -s)"
+```
+And you should see a process ID like this:
+```
+# Agent pid 95727
+```
+
+Now add the key you have created using the following command:
+```
+ssh-add ~/.ssh/id_rsa
+```
+
+Note that if your key pair has a different name, you will need to use that here. 
+
+Finally, we need to add the public key to GitHub. Go to [Tools] > [Global Options] > [Git/SVN]. If your key pair has the usual name, id_rsa.pub and id_rsa, RStudio will see it and offer to “View public key”. Do that and accept the offer to copy to your clipboard. If your key pair is named differently, open it using a text editor and copy the contents to your clipboard.
+
+Now open a browser, go to [GitHub][ghID] and sign in. Click on the profile picture in the top right hand corner and go to [Settings] > [SSH and GPG keys]. Click [New SSH key] and then paste what you just copied into this box. Give it a title (this can be anything you like) and click [Add SSH key]. 
+
+And that's it! If you've made it this far, everything should be in place for you to connect to GitHub directly as you use R. To test the connection, go back to the terminal on your computer and enter the following:
+
+```
+ssh -T git@github.com
+```
+
+And you should see a confirmation that the RSA host key has been permanently added. 
+
+
 
 [^1]: Sterling Archer approves of GitHub
 
