@@ -213,6 +213,17 @@ Now try to follow the steps of this example with your partner. You can either us
     - Stages, commits and pushes
 - Person 1 pulls the new changes
 
+## Issues
+
+One of the potential downsides to collaborating through git (rather than forking) is that each collaborator has unilateral power to make changes once the conflicts are resolved. An alternative approach would be to raise an issue through GitHub, rather than making the change. Each GitHub repository has a page for issues - to see this, click on the following link:
+
+```{r echo=FALSE, fig.asp=0.35}
+img <- readPNG("images/issues.png")
+grid.raster(img)
+```
+
+One the next page, click on [New issue] and then fill out the form on the next page. Note that you can `@` people using their GitHub username. This will send them an email noting that an issue has been raised. Each issue then has it's own page with a threaded discussion, where you and your collaborators can discuss the best solution before making any changes. Note that it is good practice to close an issue once you have decided on what to do. In keeping with the goals of git, closing an issue does not delete the discussion, and so you can refer back to this at any point. 
+
 ## Bailing out
 
 If, during the merge, you get confused about the state of things or make a mistake, use git merge --abort to abort the merge and go back to the state prior to running git merge. Then you can try to complete the merge again.
