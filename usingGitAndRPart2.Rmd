@@ -203,7 +203,28 @@ The project will now be created and the files will be cloned from GitHub to your
 
 If you click on the name of any of the files in your repository, GitHub will show you the contents as long as they are text files. If you add an HTML document to your repo, GitHub will not try to render it, but simply show you the underlying code. If you want to show the rendered HTML, you need to use GitHub pages instead. This requires a little more set up, but is worth knowing as you can generate HTML pages using R Markdown, then push these and make them publicly visible. 
 
-You can do these steps in one of your existing repositories or create a new one. Either way, make sure that you have an R project that is linked to a GitHub repository. 
+You can do these steps in one of your existing repositories or create a new one. Either way, make sure that you have an R project that is linked to a GitHub repository. First, in the folder containing your local repository add a new sub folder called `docs`. Next, open an R Markdown file in RStudio, selecting HTML output. Add the following code to the header, just underneath the `title`:
+
+```
+knit: (function(input_file, encoding) {
+  out_dir <- 'docs';
+  rmarkdown::render(input_file,
+ encoding=encoding,
+ output_file=file.path(dirname(input_file), out_dir, 'index.html'))})
+```
+
+Then modify this file to run some R code and show the results. Save this file and then click the [Knit] button to make sure the HTML compiles. Now stage/commit your changes, *making sure that this includes the `docs` folder*. Now push these changes to GitHub.
+
+Go back now to yoru GitHub repository and click [Settings] from the top menu. Scroll down to the section labelled `GitHub Pages`. Under 'Source', set 'Branch' to `main` and the folder to `docs/` (if you don't see this folder, it was not not uploaded in the commit).
+
+```{r echo=FALSE, fig.asp=0.2}
+img <- readPNG("images/github_pages.png")
+grid.raster(img)
+```
+
+Choose a theme for your web page from under 'Theme chooser'. GitHub will now set up your webpage, and the URL will appear at the top of this section (you might need to refresh the Settings page to see this). Click on this now to open the web page. 
+
+Now if you want to make changes to the webpage, simply update the markdown in your local repository, knit it to HTML and stage/commit/push it to GitHub. Note that if you updated the theme, you will need to pull the changes back to your local repository first. 
 
 # Undoing changes
 
