@@ -334,7 +334,9 @@ And this has now been dropped from the list of untracked files. If you want to s
 
 # Cloning a repository
 
-The last thing we'll do in this lab is to clone someone else's repository. For this part of the lab, you'll need to work in pairs or a small group. Using the instructions from this lab, each person should
+In this section, we'll look at how you can clone the code from someone else's repository. This will make your own copy of the code that you can then go ahead and modify for your own use. Note that this copy is then independent of the source repository, and *any changes you make will only apply to your copy, not to the original source*. This is mainly used if you want to copy some code for your own purposes, and not collaborate on code development. 
+
+For this part of the lab, you'll need to work in pairs or a small group. Using the instructions from this lab, each person should:
 
 - Make a new repository on GitHub. Make sure this has a different name to that of your working partner
 - Clone your repository onto your computer
