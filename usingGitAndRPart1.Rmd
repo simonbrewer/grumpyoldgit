@@ -516,6 +516,7 @@ Note: you can make branches using the SHA1 hash numbers of previous commits. Thi
 git checkout 7c709f0
 ```
 
+[^1]: https://thenewstack.io/dont-mess-with-the-master-working-with-branches-in-git-and-github/
 
 
 [g4wID]: https://gitforwindows.org
