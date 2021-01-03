@@ -62,7 +62,7 @@ summary(fit)
 This simply generates some correlated random numbers and builds a linear model between them, and prints out the results of that model. Save the script file as ‘lmExample.R’ and then click ‘Run’ from the scripting window. This will run all the code and allow you to check for mistakes. If all is ok, go through the same steps to commit the changes:
 
 -	Click on [Commit] from the ‘Git’ tab
--	Stage the files you want to push
+-	Stage the files you want to push (note that any new file will be staged with a green 'A' next to it, indicating that it is going to be added)
 -	Add a commit message
 -	Push to GitHub
 -	Check that your changes are on your GitHub site
@@ -139,7 +139,7 @@ grid.raster(img)
 
 Next, we'll merge these changes back into the `main` branch. Feel free to make other changes before this, just remember to commit and push them to GitHub. Go to your GitHub repository page now, and you should see a highlit box at the top of the page telling you that the new branch had a recent push. Click on the green button [Compare and pull request] to open a pull request. git will run a check for conflicts, and if none are found you should see this banner:
 
-```{r echo=FALSE}
+```{r echo=FALSE, fig.asp=0.15}
 img <- readPNG("images/no_conflict.png")
 grid.raster(img)
 ```
