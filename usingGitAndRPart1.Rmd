@@ -229,7 +229,7 @@ grid.raster(img)
 
 Fig: git work flow (https://thenewstack.io/git-with-the-program-getting-started-with-github/)
 
-First we *stage* the changes (basically creating a list of all the modifications we wish to push. Then we create a *commit*, the package of changes along with a brief description of what the modifications are. Finally, we *push* this to git. You should at this point be asked to enter your username and password for GitHub, so do so, and the changes will be pushed to GitHub. 
+First we *stage* the changes (basically creating a list of all the modifications we wish to push. Then we create a *commit*, this saves the package of changes in your local repository, along with a brief description of what the modifications are. Finally, we *push* this to the remote repository on GitHub. A
 
 ```
 git add -A
@@ -239,7 +239,7 @@ git push
 
 The description of changes is a key part of the way git works, and you will not be allowed to push changes without this. The goal here is to make the description brief but informative, and in turn the commits you make should be relatively small increments each time. Remember that the goal of these comments is to allow collaborators and other users to understand what is going on and how this is affecting the code. 
 
-Depending on your operating system, this might open a browser page for GitHub's credential manager, which can be used to store your login details. Here, you need to click the green button [Authorize GitCredentialManager], then enter your password. This may not work in certain browsers (e.g. Windows Edge). If the button is grayed out and you can't click it, close the browser and stop the `push` command (Ctrl-C). Now set you default browser to something else (e.g. Chrome) and try and run the `git push` command again. 
+Depending on your operating system, this might open a browser page for GitHub's credential manager, which can be used to store your login details. Here, you need to click the green button [Authorize GitCredentialManager], then enter your password. This may not work in certain browsers (e.g. Windows Edge). If the button is grayed out and you can't click it, close the browser and stop the `push` command (presee `Ctrl-C` in the terminal). Now set you default browser to something else (e.g. Chrome) and try and run the `git push` command again. 
 
 If this has worked, you should see some output similar to this:
 
@@ -446,7 +446,7 @@ The `*` represent a pointer and indicates the current working repository. Make s
 touch myLittlePonyScript.txt
 ```
 
-This will just create a blank text file in your repository (sorry - the script is a secret). If you run `git status`, it should list this file as an untracked change. Let's now add it to the branch and commit:
+This will just create a blank text file in your repository (sorry - the real script is a secret). If you run `git status`, it should list this file as an untracked change. Let's now add it to the branch and commit:
 
 ```
 git add myLittlePonyScript.txt
@@ -517,8 +517,13 @@ Note: you can make branches using the SHA1 hash numbers of previous commits. Thi
 ```
 git checkout 7c709f0
 ```
+# Deleting GitHub repositories
+
+We'll be making quite a few example repositories so far. If you would like to delete any git repository, you will need to both delete the local copy and the one hosted by GitHub. The local copy can be deleted like any normal folder on your computer. The remote copy can be deleted by going to the repository page on GitHub, clicking on [Settings], scrolling all the way down to the Danger Zone[^2], and selecting [Delete this repository].
 
 [^1]: https://thenewstack.io/dont-mess-with-the-master-working-with-branches-in-git-and-github/
+[^2]: Sterling Archer approves of GitHub
+
 
 
 [g4wID]: https://gitforwindows.org

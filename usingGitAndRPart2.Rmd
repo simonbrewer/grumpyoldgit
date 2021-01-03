@@ -235,10 +235,6 @@ b764644 Third commit
 
 In general, this is the preferred method for undoing changes, particularly with repositories that are shared with other people.
 
-# Deleting GitHub repositories
-
-We've made quite a few example repositories so far. If you would like to delete any git repository, you will need to both delete the local copy and the one hosted by GitHub. The local copy can be deleted like any normal folder on your computer. The remote copy can be deleted by going to the repository page on GitHub, clicking on [Settings], scrolling all the way down to the Danger Zone[^1], and selecting [Delete this repository].
-
 # Appendix: Setup SSH
 
 [NOTE THAT THIS SECTION MAY NO LONGER BE NEEDED IF YOU HAVE USED GITHUB CREDENTIAL MANAGER]
@@ -293,8 +289,6 @@ ssh -T git@github.com
 And you should see a confirmation that the RSA host key has been permanently added. 
 
 
-
-[^1]: Sterling Archer approves of GitHub
 
 [g4wID]: https://gitforwindows.org
 [gitID]: https://git-scm.com/downloads
