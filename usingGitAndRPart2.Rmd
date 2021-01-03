@@ -74,20 +74,24 @@ plot(x,y)
 abline(fit, col=2)
 ```
 
-Run to check your code (and the beautiful plot you get), and then stage, commit and push your changes. Make any other changes that you would like to, and when you are done, commit these and then close RStudio. 
+Run to check your code (and the beautiful plot you get), and then stage, commit and push your changes. Make any other changes that you would like to, and when you are done, commit/push these and then close RStudio. 
 
 # Using branches in RStudio
 
-[NEEDS UPDATES]
+We covered the use of branches in the previous lab as a way of allowing development of code in parallel to an established `main` branch. RStudio has added support for the use of branches fairly recently, and we'll go through the steps of setting up a branch, developing with it, and finally merging it back to the `main` repository. 
 
-In this section, we'll look at how you can clone the code from someone else's repository. This will make your own copy of the code that you can then go ahead and modify for your own use. Note that this copy is then independent of the source repository, and *any changes you make will only apply to your copy, not to the original source*. This is mainly used if you want to copy some code for your own purposes, and not collaborate on code development. For this section, you will again need to work in pairs or small groups. To start:
+We'll continue using the `myrrepo` repository that you just created. If it is not currently open in RStudio, find the R project file (*myrrepo.rproj*) and double click it to open it. Next click the [Pull] button in the Git tab to make sure your local copy is up-to-date. This might seem unnecessary, but it is a good practice to always click and check for updates before changing anything. 
 
-- Make a new repository on GitHub. Make sure this has a different name to that of your working partner
-- Clone your repository onto your computer by creating a new RStudio project following the instructions above
+Now we'll create a new branch. In the Git panel in RStudio, find the New Branch button. This has two connected purple rectangles and looks like this:
 
-Now let's add some R code. The following is just some simple code to make a plot from a file, feel free to replace this with your own code if you'd prefer. 
+```{r echo=FALSE, fig.height = 0.5}
+img <- readPNG("images/rstudio_branches.png")
+grid.raster(img)
+```
 
-Rather than a simple script, we'll make a function to make the plots. Open a new R script and enter the following code:
+Clicking this will open a small window, where you can enter the name of a new branch. Add a name and click [Create]. This will now create a new branch, push it to your GitHub repository and set RStudio to work in the new repository. If you want to checkout a different branch, click on the drop down menu next to the New Branch button. 
+
+Now let's add some code. The following is just some simple code to make a plot from a file, feel free to replace this with your own code if you'd prefer. Rather than a simple script, we'll make a function to make the plots. Open a new R script and enter the following code:
 
 ```{r}
 plot_ts <- function(x, y, ...) {
@@ -99,17 +103,15 @@ plot_ts <- function(x, y, ...) {
 
 This function will plot some time series data and add a smoothing line based on a GAM fit. Save the script as *plot_ts.R* and push it to GitHub with a suitable commit message. 
 
-Next, we'll add some data to the local repository. 
-
-Next, we're going to add a file to the repository. Get the Mauna Loa CO$_2$ csv file from the slack channel/email chain and add it to the project directory on your computer. If you've forgotten where this is, typing the following command will print R’s current directory 
+Next, we're going to add a data file to the repository for plotting. Get the Mauna Loa CO$_2$ file (*co2_mm_mlo.csv*) from the slack channel/email chain and add it to the project directory on your computer. If you've forgotten where this is, typing the following command will print R’s current directory 
 
 ```{r results='hide'}
 getwd()
 ```
 
-Now if you check your Git tab, you should now see this file, with a small 'A' to indicate this is a new file added to the repository. Click on the check box next to the file name to stage it, then click [Commit] and add a short message. This time, we won't push the changes to GitHub just yet, so close the 'Review Changes' window when you are done. If you look at the [Git] tab in RStudio, you should now see a message stating that `Your branch is ahead of origin/main by 1 commit`. You can make several local commits in this way, and then push them all to GitHub on one go. This can be useful if your connection is limited in anyway.
+Now if you check your Git tab, you should now see this file, with a small 'A' to indicate this is a new file added to the repository. Click on the check box next to the file name to stage it, then click [Commit] and add a short message. This time, we won't push the changes to GitHub just yet, so close the 'Review Changes' window when you are done. If you look at the [Git] tab in RStudio, you should now see a message stating that `Your branch is ahead of origin/main by 1 commit`. 
 
-Finally, we'll add a simple R script that reads the Mauna Loa CO$_2$ file and plots it. Open a new script and add the following code (note we need to load both the data and the file containing the plot function.
+Note that you can make several local commits in this way, and then push them all to GitHub on one go. This can be useful if your connection is limited in anyway. We'll add a simple R script that reads the Mauna Loa CO$_2$ file and plots it. Open a new script and add the following code (note we need to load both the data and the file containing the plot function.
 
 ```{r fig.keep='none'}
 # Load function
@@ -135,18 +137,16 @@ img <- readPNG("images/git_history.png")
 grid.raster(img)
 ```
 
-## Cloning another repository
+Next, we'll merge these changes back into the `main` branch. Feel free to make other changes before this, just remember to commit and push them to GitHub. Go to your GitHub repository page now, and you should see a highlit box at the top of the page telling you that the new branch had a recent push. Click on the green button [Compare and pull request] to open a pull request. git will run a check for conflicts, and if none are found you should see this banner:
 
-Now clone your partner's repository:
+```{r echo=FALSE}
+img <- readPNG("images/no_conflict.png")
+grid.raster(img)
+```
 
-- First, close RStudio
-- Go to their GitHub page and find the repository that they have just made. Click the green [Code] button and copy the link.  
-- Open RStudio and use the file menu to open a new project. 
-- Click on [Version Control], then [Git] (Clone a project from a Git repository). 
-- Add the URL you copied from GitHub to the box labeled [Repository URL]. 
-- Make sure the the directory where the local copy of the repository will be kept is ok and click [Create project].
+If no problems have been found, fill out the pull request (title and explanatory text), and click [Create pull request]. The next page lists the details of the proposed merge as well as a section for comments (this will make more sense when we look at this for collaborative owrk). Click [Merge pull request] and [Confirm request]. Once the branches are merged, GitHub will give you the option to delete the new branch, and you should do so. It is generally cleaner to make a new branch for the next development step than to re-use an existing branch once you are finished with it. Go back to the main repository page and you should see that your changes have been integrated. 
 
-The project will now be created and the files will be cloned from GitHub to your computer. 
+The only remaining thing to do is to update your local repository. Go back to RStudio, choose `main` from the drop-down branch menu (top right). This will probably delete some files, but don't panic (!), you will get them back from GitHub in a moment. Click [Pull] and git will download the new files, bringing your local `main` into line with the remote copy. 
 
 # GitHub pages
 
