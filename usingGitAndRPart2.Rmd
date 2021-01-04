@@ -19,15 +19,11 @@ library(grid)
 
 # R and GitHub
 
-In the previous section, we went through the somewhat laborious steps of setting up your computer to talk to GitHub. We will now look at how to integrate this with R/RStudio, how to set up a R project with GitHub, and the use of GitHub Pages. 
-
-# R projects and GitHub
-
-There are a couple of ways of doing this, but the following method is pretty reliable. 
+We'll now look at how to integrate GitHub with RStudio through the use of R projects. We'll also look at the use of GitHub Pages and how to undo your changes with git. There are a couple of ways of connecting R with GitHub, but the following method is pretty reliable. 
 
 ## Make a new repository on GitHub
 
-We covered this in the previous lab, but let's do this again. Go to [GitHub][ghID], make sure you are logged in and go to [Repositories]. Click the green button to make a new repository. Call this `myrrepo`, and add a short description (something like `testing RStudio setup`). Make sure the check-box to initialize the repository with a README is checked and click [Create repository]. Once created, click the button [Clone or download], and copy the HTTPS URL (if you click on the little clipboard icon this will get copied to your clipboard).
+We covered this in the previous lab, but let's do this again. Go to [GitHub][ghID], make sure you are logged in and go to [Repositories]. Click the green button to make a new repository. Call this `my-r-repo`, and add a short description (something like `testing RStudio setup`). Make sure the check-box to initialize the repository with a README is checked and click [Create repository]. Once created, click the button [Clone or download], and copy the HTTPS URL (if you click on the little clipboard icon this will get copied to your clipboard).
 
 ## Make a new RStudio project
 
@@ -35,7 +31,7 @@ To connect this to RStudio, we need to make an RStudio project. This is a little
 
 On the next screen, add the URL you copied from GitHub to the box labeled [Repository URL]. For the next box, accept the given project directory name (this should be the same as the GitHub repository). The final box gives the directory where the repository will be cloned to on your computer. Make sure this is ok, and that the check-box [Start in new session] is checked. Now click [Create project].
 
-RStudio will appear to restart, launching a new local RStudio Project that connects to the repository on GitHub. It will download the README file, and this should appear in the file browser panel. 
+RStudio will restart, launching a new local RStudio Project that connects to the repository on GitHub. It will download the README file, and this should appear in the file browser panel. 
 
 If all this has worked, congratulations - you have successfully linked RStudio to your GitHub account, and can now make changes and push these to GitHub. Note that nearly all these instructions only need to be carried out once. The only part of this you will do routinely is the last part: creating new projects for different bits of work you are carrying out. 
 
@@ -43,7 +39,7 @@ If all this has worked, congratulations - you have successfully linked RStudio t
 
 Let's try and make some changes. First, make sure the README.md file is open in the files panel. If not, click on the file browser, which will show you the contents of the project directory, and double click the `README.md` file. Add a small amount of text to this (I’ll leave this up to you). 
 
-If you now look at the RStudio panel with the Environment, History and Connections tabs, you should see a new one labelled [Git]. Click on this and you should see your READ.md file with a small blue ‘M’ next to it. This indicates that this file has been modified and is different from the version downloaded from GitHub. If you're happy with the changes you made, click on the check-box next to the 'M' (under the heading 'Staged') to stage these changes for uploading.
+If you now look at the RStudio panel with the [Environment], [History] and [Connections] tabs, you should see a new one labeled [Git]. Click on this and you should see your READ.md file with a small blue ‘M’ next to it. This indicates that this file has been modified and is different from the version downloaded from GitHub. If you're happy with the changes you made, click on the check-box next to the 'M' (under the heading 'Staged') to stage these changes for uploading.
 
 Now click the [Commit] button. A new window will open showing a) all the files; b) the staged files with a check mark; c) a blank panel to add a commit message; d) a display of which lines have been changed in the currently highlit file (green for additions, red for deletions). Check that your file is still listed as 'Staged' and add a commit message; a short description of the changes. Once this is done, click [Commit] to commit your changes. This effectively creates an updated local version of the repository, including the staged changes. However, if you check your GitHub repository, and look at the README file there, you will see that the changes have not yet been uploaded. To do this, we need to push the changes, so click this button – you should see a short message detailing the upload. Go back to your browser and recheck the README file and you should see your changes appear (refresh the browser page if they are not there). 
 
@@ -80,7 +76,7 @@ Run to check your code (and the beautiful plot you get), and then stage, commit 
 
 We covered the use of branches in the previous lab as a way of allowing development of code in parallel to an established `main` branch. RStudio has added support for the use of branches fairly recently, and we'll go through the steps of setting up a branch, developing with it, and finally merging it back to the `main` repository. 
 
-We'll continue using the `myrrepo` repository that you just created. If it is not currently open in RStudio, find the R project file (*myrrepo.Rproj*) and double click it to open it. Next click the [Pull] button in the Git tab to make sure your local copy is up-to-date. This might seem unnecessary, but it is a good practice to always click and check for updates before changing anything. 
+We'll continue using the `my-r-repo` repository that you just created. If it is not currently open in RStudio, find the R project file (*my-r-repo.Rproj*) and double click it to open it. Next click the [Pull] button in the Git tab to make sure your local copy is up-to-date. This might seem unnecessary, but it is a good practice to always click and check for updates before changing anything. 
 
 Now we'll create a new branch. In the Git panel in RStudio, find the New Branch button. This has two connected purple rectangles and looks like this:
 
