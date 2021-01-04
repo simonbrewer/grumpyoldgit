@@ -26,13 +26,13 @@ library(grid)
 - tracking for issues and bugs
 - commenting system to make it clear(ish) what changes have been made and why
 
-The whole system works through repositories: a set of files dedicated to a given project. This is not restricted to R files, and can be used with most computer languages, documents and files. Repositories can be stored on your own computer (*local*) or hosted on a server (*remote*). In practice, most people use a combination of these, with your files being changed locally, then *committed* to the hosting service. 
+The whole system works through repositories: a set of files dedicated to a given project. This is not restricted to R files, and can be used with most computer languages, documents and files. Repositories can be stored on your own computer (*local*) or hosted on a server (*remote*). In practice, most people use a combination of these, with your files being changed locally, then *committed* to the remote hosting service. 
 
 The examples used here are based on the information available at [happygitwithr][hgwrID]. This website has much more extensive instructions on the use of git and R (and git on its own), and is an excellent place to follow up. 
 
 # GitHub
 
-GitHub is one of several online hosting sites, that provide cloud-based storage for your git repositories (other options are GitLab and Bitbucket). This (and git) now integrate quite seamlessly with R, and particularly with RStudio, and we'll go through the steps of setting up R and GitHub to play nicely together. 
+GitHub is one of several online hosting sites, that provide cloud-based storage for your git repositories (other options include GitLab and Bitbucket). This (and git) now integrate quite seamlessly with R, and particularly with RStudio, and we'll go through the steps of setting up R and GitHub to play nicely together. 
 
 The overall setup scheme is as follows:
 
@@ -42,7 +42,7 @@ The overall setup scheme is as follows:
 4. Link git to your account
 5. Connect R to git and GitHub
 
-We'll tackle the first 4 of these in this lab, and go through some basics of working with git on the command line.
+We'll tackle the first 4 of these in this lab, and go through some basics of working with git on the command line. In the next lab we'll look at working with GitHub through RStudio, and finally look at ways that you can collaborate on projects through GitHub.
 
 ## Setting up a GitHub account
 
@@ -57,7 +57,7 @@ Go to
 
 ## Install git
 
-git is the underlying software that manages the repositories, keeps files current and copies and sends files between computers, so we need to install this first so that R can use it. 
+**git** is the underlying software that manages the repositories, keeps files current and copies and sends files between computers, so we need to install this first so that R can use it. We're going to use the command line to start working with git, as it is the ebst way to get a feel for what is going on. If you start to use git more routinely, there are several excellent GUIs that will make your life easier (GitHub has a neat desktop application).
 
 ### Windows
 
@@ -107,7 +107,7 @@ git --version
 
 If this doesn't work, open [Tools] > [Global options]. Select the Terminal from the left hand side, and look at the drop down list titled [Open new terminal with..]. If there is an open for `git bash`, select this and try again. 
 
-On Mac or Linux, you can also use a regular terminal, as long as it is running bash. On Windows, you can access Git Bash from the Start menu, which will open a terminal.
+On Mac or Linux, you can also use a regular terminal, as long as it is running bash or zsh. On Windows, you can access Git Bash from the Start menu, which will open a terminal (don't try to use the PowerShell for this).
 
 If this works, the next steps are to tell git your name and email address. The email address should be the address that you registered with GitHub, but the name can be your real name. Type the following in your terminal:
 
@@ -187,20 +187,25 @@ remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
 Receiving objects: 100% (3/3), done.
 ```
 
-To check that this has worked, we will change directory to the newly created clone repository. and take a look at its contents. 
+This will create a new folder with the name of the repository (`myrepo`). Change directory now and take a look at its contents. 
 
 ```
 cd myrepo
 ls
 head README.md
+```
+
+The `head` command will show you the first few lines of the README file. This is a markdown file and is used as the default landing page for your repository. Although we've just downloaded this, so know where it is linked to, we can check the address of the remote repository as follows:
+
+```
 git remote show origin
 ```
 
-The `head` command will show you the first few lines of the README file. This is a markdown file and is used as the default landing page for your repository. The last of these commands will provide information about where this would be cloned from, information about where the master repository is held, and whether or not the local clone copy is up-to-date (it is for now). 
+Another very useful command is `git status`, which provides a sumamry of the current repository, including 
 
-```
-git remote show origin
-```
+- Which branch you are working on (more on this later)
+- Whether or not files are being tracked (i.e. monitored for changes by git)
+- Whether files are in sync with the remote repository
 
 ## Make a local change, commit, and push
 
@@ -216,7 +221,7 @@ If you want to check that git has seen this change, type the following at the co
 git status
 ```
 
-And this should tell you that one file (`README.md`) has been modified. 
+And this should tell you that one file (`README.md`) has been modified, but that it is *not* staged. 
 
 ```
     modified:   README.md
@@ -231,11 +236,13 @@ grid.raster(img)
 
 Fig: git work flow (https://thenewstack.io/git-with-the-program-getting-started-with-github/)
 
-First we *stage* the changes (basically creating a list of all the modifications we wish to push. Then we create a *commit*, this saves the package of changes in your local repository, along with a brief description of what the modifications are. Finally, we *push* this to the remote repository on GitHub. A
+- First we *stage* the changes. This creates the package of modifications we have made. In this case, this includes adding the new file with `git add`
+- Second, we create a *commit*. This updates your *local* repository with the package of changes, along with a brief description of the modifications you made. 
+- Finally, we *push* this to the *remote* repository on GitHub. 
 
 ```
 git add -A
-git commit -m "A commit from my local computer"
+git commit -m "My first commit"
 git push
 ```
 
@@ -260,7 +267,9 @@ To https://github.com/grumpy-old-git/myrepo.git
 
 Now let's check to see if the local change propagated to the GitHub repository. Go back to your GitHub page and refresh the repository page. You should now see the new line in the README file.
 
-While the README file is automatically shown when you access the directory, you can also look at the content of any other file you have added to the repository. Click on [Code], at the top of the page, then select any file (there will probably only be the README file for now). If the file is a text file, the content will be displayed in the window. This window allows you to track past changes in the file by clicking on the 'History' link on the right hand side. For now, this will just show the initial commit when the repository was made, and the update to the README file. At the far right hand side of this page is a small icon that looks like this `<>` for each commit. Clicking this will show you the files in the repository *before* that commit was made, which allows you to track the changes made by yourself (and others). 
+While the README file is automatically shown when you access the directory, you can also look at the content of any other file you have added to the repository. Click on the name of the repository (`myrepo`), at the top of the page, then click on the name of any file (there will probably only be the README file for now). If the file is a text file, the content will be displayed in the window. This window allows you to track past changes in the file by clicking on the 'History' link on the right hand side. For now, this will just show the initial commit when the repository was made, and the update to the README file. At the far right hand side of this page is a small icon that looks like this `<>` for each commit. Clicking this will show you the content of the file following the commit, which allows you to track the changes made by yourself (and others). 
+
+You can also see the local copy of your commits, by typing `git log` in the terminal to print out the author, date and comment for each one.
 
 # Pulling changes from GitHub
 
@@ -299,7 +308,7 @@ git add randomWalk4.nlogo
 git status
 ```
 
-The file will now be marked as a *new* file, and will be added the next time you make a commit. So let's do that now. 
+You can also check the list of tracked files with `git ls-files`. The file will now be marked as a *new* file, and will be added the next time you make a commit. So let's do that now. 
 
 ```
 git commit -m "Added model code"
@@ -332,7 +341,7 @@ echo allMySecrets.txt >> .gitignore
 git status
 ```
 
-And this has now been dropped from the list of untracked files. If you want to see your history of commits, simply type `git log` in the terminal to print out the author, date and comment for each one.
+And this has now been dropped from the list of untracked files. 
 
 # Cloning a repository
 
@@ -342,7 +351,7 @@ For this part of the lab, you'll need to work in pairs or a small group. Using t
 
 - Make a new repository on GitHub. Make sure this has a different name to that of your working partner
 - Clone your repository onto your computer
-- Update your README with a *polite* message for your working partner
+- Update your README with a message for your working partner. This doesn't have to be polite, but at least try to use good grammar. 
 - Add a file to your local repository and use the add/commit process to push it to GitHub
 
 Once you have done this, clone your partner's repository onto your computer. To do this:
@@ -401,7 +410,7 @@ In this section, we're going to look briefly at how to work with branches throug
 cd /Users/username/Desktop/github/myrepo
 ```
 
-You can get a list through the terminal by typing `git branch -a`. If you try this for any of your existing repositories, you should see something like the following, indicating that only the main branch exists. 
+You can get a list of current branches through the terminal by typing `git branch -a`. If you try this for any of your existing repositories, you should see something like the following, indicating that only the main branch exists. 
 
 ```
 * main
@@ -519,9 +528,10 @@ Note: you can make branches using the SHA1 hash numbers of previous commits. Thi
 ```
 git checkout 7c709f0
 ```
+
 # Deleting GitHub repositories
 
-We'll be making quite a few example repositories so far. If you would like to delete any git repository, you will need to both delete the local copy and the one hosted by GitHub. The local copy can be deleted like any normal folder on your computer. The remote copy can be deleted by going to the repository page on GitHub, clicking on [Settings], scrolling all the way down to the Danger Zone, and selecting [Delete this repository]. You will be asked to confirm this at least once, so do and your repository will be removed. 
+We'll be making quite a few example repositories in these labs. If you would like to delete any git repository, you will need to both delete the local copy and the one hosted by GitHub. The local copy can be deleted like any normal folder on your computer. The remote copy can be deleted by going to the repository page on GitHub, clicking on [Settings], scrolling all the way down to the Danger Zone, and selecting [Delete this repository]. You will be asked to confirm this at least once, so do and your repository will be removed. 
 
 ```{r echo=FALSE}
 img <- readPNG("images/archer_zod.png")
