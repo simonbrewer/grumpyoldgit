@@ -80,7 +80,7 @@ Run to check your code (and the beautiful plot you get), and then stage, commit 
 
 We covered the use of branches in the previous lab as a way of allowing development of code in parallel to an established `main` branch. RStudio has added support for the use of branches fairly recently, and we'll go through the steps of setting up a branch, developing with it, and finally merging it back to the `main` repository. 
 
-We'll continue using the `myrrepo` repository that you just created. If it is not currently open in RStudio, find the R project file (*myrrepo.rproj*) and double click it to open it. Next click the [Pull] button in the Git tab to make sure your local copy is up-to-date. This might seem unnecessary, but it is a good practice to always click and check for updates before changing anything. 
+We'll continue using the `myrrepo` repository that you just created. If it is not currently open in RStudio, find the R project file (*myrrepo.Rproj*) and double click it to open it. Next click the [Pull] button in the Git tab to make sure your local copy is up-to-date. This might seem unnecessary, but it is a good practice to always click and check for updates before changing anything. 
 
 Now we'll create a new branch. In the Git panel in RStudio, find the New Branch button. This has two connected purple rectangles and looks like this:
 
@@ -144,9 +144,34 @@ img <- readPNG("images/no_conflict.png")
 grid.raster(img)
 ```
 
-If no problems have been found, fill out the pull request (title and explanatory text), and click [Create pull request]. The next page lists the details of the proposed merge as well as a section for comments (this will make more sense when we look at this for collaborative owrk). Click [Merge pull request] and [Confirm request]. Once the branches are merged, GitHub will give you the option to delete the new branch, and you should do so. It is generally cleaner to make a new branch for the next development step than to re-use an existing branch once you are finished with it. Go back to the main repository page and you should see that your changes have been integrated. 
+If no problems have been found, fill out the pull request (title and explanatory text), and click [Create pull request]. The next page lists the details of the proposed merge as well as a section for comments (this will make more sense when we look at this for collaborative work). Click [Merge pull request] and [Confirm request]. Once the branches are merged, GitHub will give you the option to delete the new branch, and you should do so. It is generally cleaner to make a new branch for the next development step than to re-use an existing branch once you are finished with it. Go back to the main repository page and you should see that your changes have been integrated. 
 
-The only remaining thing to do is to update your local repository. Go back to RStudio, choose `main` from the drop-down branch menu (top right). This will probably delete some files, but don't panic (!), you will get them back from GitHub in a moment. Click [Pull] and git will download the new files, bringing your local `main` into line with the remote copy. 
+Now let's update your local `main` repository. Go back to RStudio, choose `main` from the drop-down branch menu (top right). This will probably delete some files, but don't panic (!), you will get them back from GitHub in a moment. Click [Pull] and git will download the new files, bringing your local `main` into line with the remote copy. 
+
+When all this is done, we can clean up the local repositories. Go to the terminal in RStudio and type
+
+```
+git branch
+```
+
+To see the list of branches. This should look something like
+
+```
+* main
+  test
+```
+
+If the `*` is not next to `main`, type `git checkout main` to move to that branch. We can now delete the `test` branch:
+
+```
+git branch -d test
+```
+
+And finally run this command to clean up any missing links:
+
+```
+git fetch --prune
+```
 
 # GitHub pages
 
