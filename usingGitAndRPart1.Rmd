@@ -124,6 +124,8 @@ git config --global --list
 
 # Connect to GitHub
 
+[NEEDS SOMETHING ON SETTING UP A REPO FOLDER]
+
 In this section, we will walk through the steps of connecting to GitHub for the first time, and both pulling from and pushing to GitHub from your computer.
 
 ## Make a repo on GitHub
@@ -357,7 +359,7 @@ If you have got to this point, you now have a successfully working git installat
 [NEEDS REVIEW]
 Sometimes you want to make big changes to your code without having to disturb your main stream of development. Maybe you want to break it up into multiple simple commits so you can easily track what you’re doing. Maybe you’re not sure what you’ve done is the best approach and you want someone else to review your code. Or, maybe you want to try something experimental (you can merge it back only if the experiment succeeds). 
 
-When you initialize a git repository, this is created with a single branch, the default. This is shown whenever anyone visits your repository, and is the initial branch that you get when you clone a repository. In general, you should consider this as the official working version of your project, and you should not work with this branch in a collaborative project. By default, GitHub names the default branch `main` in any new repository (previously this was `master`).
+When you initialize a git repository, this is created with a single default branch. This is shown whenever anyone visits your repository, and is the initial branch that you get when you clone a repository. In general, you should consider this as the official working version of your project, and you should not work with this branch in a collaborative project. By default, GitHub names the default branch `main` in any new repository (previously this was `master`).
 
 > Do not mess with the master. If you make changes to the master branch of a group project while other people are also working on it, your on-the-fly changes will ripple out to affect everyone else and very quickly there will be merge conflicts, weeping, rending of garments, and plagues of locusts. It’s that serious.
 Unless you specify a different branch, the default branch in a repository is the base branch for new pull requests and code commits.[^1]
@@ -519,11 +521,16 @@ git checkout 7c709f0
 ```
 # Deleting GitHub repositories
 
-We'll be making quite a few example repositories so far. If you would like to delete any git repository, you will need to both delete the local copy and the one hosted by GitHub. The local copy can be deleted like any normal folder on your computer. The remote copy can be deleted by going to the repository page on GitHub, clicking on [Settings], scrolling all the way down to the Danger Zone[^2], and selecting [Delete this repository].
+We'll be making quite a few example repositories so far. If you would like to delete any git repository, you will need to both delete the local copy and the one hosted by GitHub. The local copy can be deleted like any normal folder on your computer. The remote copy can be deleted by going to the repository page on GitHub, clicking on [Settings], scrolling all the way down to the Danger Zone, and selecting [Delete this repository]. You will be asked to confirm this at least once, so do and your repository will be removed. 
+
+```{r echo=FALSE}
+img <- readPNG("images/archer_zod.png")
+grid.raster(img)
+```
+
+Fig: Sterling Archer approves of GitHub
 
 [^1]: https://thenewstack.io/dont-mess-with-the-master-working-with-branches-in-git-and-github/
-[^2]: Sterling Archer approves of GitHub
-
 
 
 [g4wID]: https://gitforwindows.org
