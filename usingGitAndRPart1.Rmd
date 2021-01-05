@@ -343,26 +343,6 @@ git status
 
 And this has now been dropped from the list of untracked files. 
 
-# Cloning a repository
-
-In this section, we'll look at how you can clone the code from someone else's repository. This will make your own copy of the code that you can then go ahead and modify for your own use. Note that this copy is then independent of the source repository, and *any changes you make will only apply to your copy, not to the original source*. This is mainly used if you want to copy some code for your own purposes, and not collaborate on code development. 
-
-For this part of the lab, you'll need to work in pairs or a small group. Using the instructions from this lab, each person should:
-
-- Make a new repository on GitHub. Make sure this has a different name to that of your working partner
-- Clone your repository onto your computer
-- Update your README with a message for your working partner. This doesn't have to be polite, but at least try to use good grammar. 
-- Add a file to your local repository and use the add/commit process to push it to GitHub
-
-Once you have done this, clone your partner's repository onto your computer. To do this:
-
-- Go your partner's GitHub page and find the correct repository. 
-- Click on the green [Code] button and copy the link
-- Go to your terminal and type `cd ..` to change to the higher level directory 
-- Clone the repo: `git clone https://github.com/NAME/REPOSITORY.git` (but replace the https link with the link that you copied)
-
-If you have got to this point, you now have a successfully working git installation. In the next lab we will look at how to integrate this with R/RStudio.
-
 # Working with branches in git
 
 [NEEDS REVIEW]
@@ -404,13 +384,13 @@ Fig: Example with loss of higher level branch (https://docs.github.com)
 
 ## Working with branches from the terminal
 
-In this section, we're going to look briefly at how to work with branches through the terminal (in case you want to work with non-R files). Open a terminal and change to one of your existing repositories. For example:
+In this section, we're going to look briefly at how to work with branches through the terminal (in case you want to work with non-R files). If your terminal is not already open, open it now and change to your `myrepo` repository. For example:
 
 ```
 cd /Users/username/Desktop/github/myrepo
 ```
 
-You can get a list of current branches through the terminal by typing `git branch -a`. If you try this for any of your existing repositories, you should see something like the following, indicating that only the main branch exists. 
+You can get a list of current branches through the terminal by typing `git branch -a`. If you try this for your existing repository, you should see something like the following, indicating that only the main branch exists. 
 
 ```
 * main
@@ -493,7 +473,7 @@ git commit -m "Added introduction..."
 
 Once you have finished making all the changes, we can merge this back to the `main` branch. Remember that this would usually be done when you have checked and tested any changes you've made, and your code is production ready. If it is not, it is better to keep it on the working or development branch. 
 
-In order to merge, *you need to be on the branch you want to merge to.* In this example, that means moving back to the `main` branch
+In order to merge, *you need to be on the branch you want to merge to.* In this example, that means moving back to the `main` branch (run the `git branch` command just to chek you are in the right place:
 
 ```
 git checkout main
@@ -506,11 +486,11 @@ If you are sure you are in the right place, we can now merge the `devel` branch 
 git merge devel --no-ff
 ```
 
-And you should see something similar to the following output if successful:
+You will be asked to add a commit message to describe the merged changes, so do this. When you quit the text editor, you should see something similar to the following output if successful:
 
 ```
 Merge made by the 'recursive strategy'.
- myLittlePonyScript.txt | 1 ++
+ myLittlePonyScript.txt | 1 +
  1 file changed, 1 insertion(+)
  create model 100644 myLittlePonyScript.txt
 ```
@@ -528,6 +508,26 @@ Note: you can make branches using the SHA1 hash numbers of previous commits. Thi
 ```
 git checkout 7c709f0
 ```
+
+# Cloning a repository
+
+In this section, we'll look at how you can clone the code from someone else's repository. This will make your own copy of the code that you can then go ahead and modify for your own use. Note that this copy is then independent of the source repository, and *any changes you make will only apply to your copy, not to the original source*. This is mainly used if you want to copy some code for your own purposes, and not collaborate on code development. 
+
+For this part of the lab, you'll need to work in pairs or a small group. Using the instructions from this lab, each person should:
+
+- Make a new repository on GitHub. Make sure this has a different name to that of your working partner
+- Clone your repository onto your computer
+- Update your README with a message for your working partner. This doesn't have to be polite, but at least try to use good grammar. 
+- Add a file to your local repository and use the add/commit process to push it to GitHub
+
+Once you have done this, clone your partner's repository onto your computer. To do this:
+
+- Go your partner's GitHub page and find the correct repository. 
+- Click on the green [Code] button and copy the link
+- Go to your terminal and type `cd ..` to change to the higher level directory 
+- Clone the repo: `git clone https://github.com/NAME/REPOSITORY.git` (but replace the https link with the link that you copied)
+
+If you have got to this point, you now have a successfully working git installation. In the next lab we will look at how to integrate this with R/RStudio.
 
 # Deleting GitHub repositories
 
