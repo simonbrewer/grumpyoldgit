@@ -256,6 +256,12 @@ b764644 Third commit
 
 In general, this is the preferred method for undoing changes, particularly with repositories that are shared with other people.
 
+Note: you can make branches using the SHA1 hash numbers of previous commits. This is an excellent way to go back and check some old code prior to resetting or reverting. For example:
+
+```
+git checkout 7c709f0
+```
+
 # Appendix: Setup SSH
 
 [NOTE THAT THIS SECTION MAY NO LONGER BE NEEDED IF YOU HAVE USED GITHUB CREDENTIAL MANAGER]

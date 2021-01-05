@@ -503,12 +503,6 @@ git push
 
 Once you see the confirmation notice, go to your GitHub page and check that the changes are visible there. 
 
-Note: you can make branches using the SHA1 hash numbers of previous commits. This is an excellent way to go back and check some old code prior to resetting or reverting. For example:
-
-```
-git checkout 7c709f0
-```
-
 # Cloning a repository
 
 In this section, we'll look at how you can clone the code from someone else's repository. This will make your own copy of the code that you can then go ahead and modify for your own use. Note that this copy is then independent of the source repository, and *any changes you make will only apply to your copy, not to the original source*. This is mainly used if you want to copy some code for your own purposes, and not collaborate on code development. 
