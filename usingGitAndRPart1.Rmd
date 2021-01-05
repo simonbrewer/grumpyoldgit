@@ -28,7 +28,12 @@ library(grid)
 
 The whole system works through repositories: a set of files dedicated to a given project. This is not restricted to R files, and can be used with most computer languages, documents and files. Repositories can be stored on your own computer (*local*) or hosted on a server (*remote*). In practice, most people use a combination of these, with your files being changed locally, then *committed* to the remote hosting service. 
 
-The examples used here are based on the information available at [happygitwithr][hgwrID]. This website has much more extensive instructions on the use of git and R (and git on its own), and is an excellent place to follow up. 
+```{r echo=FALSE, fig.cap = "https://xkcd.com/1597/"}
+img <- readPNG("images/git_xkcd.png")
+grid.raster(img)
+```
+
+We're going to use the command line to start working with git, as it is the best way to get a feel for what is going on. If you start to use git more routinely, there are several excellent GUIs that will make your life easier (GitHub has a neat desktop application). The examples used here are based on the information available at [happygitwithr][hgwrID]. This website has much more extensive instructions on the use of git and R (and git on its own), and is a great place to follow up. 
 
 # GitHub
 
@@ -57,7 +62,7 @@ Go to
 
 ## Install git
 
-**git** is the underlying software that manages the repositories, keeps files current and copies and sends files between computers, so we need to install this first so that R can use it. We're going to use the command line to start working with git, as it is the ebst way to get a feel for what is going on. If you start to use git more routinely, there are several excellent GUIs that will make your life easier (GitHub has a neat desktop application).
+**git** is the underlying software that manages the repositories, keeps files current and copies and sends files between computers, so we need to install this first so that R can use it. 
 
 ### Windows
 
@@ -229,12 +234,10 @@ And this should tell you that one file (`README.md`) has been modified, but that
 
 Now let's push this change to git. This is done in three parts. 
 
-```{r echo=FALSE, fig.asp=0.2}
+```{r echo=FALSE, fig.asp=0.2, fig.cap = "git work flow (https://thenewstack.io/git-with-the-program-getting-started-with-github/)"}
 img <- readPNG("images/git_flow.png")
 grid.raster(img)
 ```
-
-Fig: git work flow (https://thenewstack.io/git-with-the-program-getting-started-with-github/)
 
 - First we *stage* the changes. This creates the package of modifications we have made. In this case, this includes adding the new file with `git add`
 - Second, we create a *commit*. This updates your *local* repository with the package of changes, along with a brief description of the modifications you made. 
@@ -357,30 +360,24 @@ In a collaborative project, you should create new branches for each particular t
 
 In this example, a default repository (`master`) has been established (green line). Two branches are then checked out, each set up to work on a single new feature (`feature1`, `feature2`). When feature 1 is complete, this is merged back to the `master` branch, through a pull request, followed by a second merge for feature 2. 
 
-```{r echo=FALSE, fig.asp=0.55}
+```{r echo=FALSE, fig.asp=0.55, fig.cap = "Example of git repository with two branches (https://digitalvarys.com/git-branch-and-its-operations/)"}
 img <- readPNG("images/branches0.png")
 grid.raster(img)
 ```
 
-Fig: Example of git repository with two branches (https://digitalvarys.com/git-branch-and-its-operations/)
-
 Note that it is also possible to checkout from a lower-level branch. If, for example, you have a working version of a new feature, you might want to check out a new branch based on this, where you could add some additional code, or an experimental method to test whether it is worht including this in the working branch *before* merging this back to the production level. This does not affect the working version, *and* doesn't mess with the main branch. In this example, a second branch is checked out from `feature1`, then merged back prior to the intermediate branch. The subsequent merge of this with the main branch will include all changes. 
 
-```{r echo=FALSE, fig.asp=0.25}
+```{r echo=FALSE, fig.asp=0.25, fig.cap = "Example with sub-branches (https://docs.github.com)"}
 img <- readPNG("images/branches1.png")
 grid.raster(img)
 ```
 
-Fig: Example with sub-branches (https://docs.github.com)
-
 If the intermediate branch is merged back and deleted, the lower level branch will be automatically re-assigned to the next higher level branch
 
-```{r echo=FALSE, fig.asp=0.25}
+```{r echo=FALSE, fig.asp=0.25, fig.cap="Example with loss of higher level branch (https://docs.github.com)"}
 img <- readPNG("images/branches2.png")
 grid.raster(img)
 ```
-
-Fig: Example with loss of higher level branch (https://docs.github.com)
 
 ## Working with branches from the terminal
 
@@ -555,12 +552,10 @@ If you have got to this point, you now have a successfully working git installat
 
 We'll be making quite a few example repositories in these labs. If you would like to delete any git repository, you will need to both delete the local copy and the one hosted by GitHub. The local copy can be deleted like any normal folder on your computer. The remote copy can be deleted by going to the repository page on GitHub, clicking on [Settings], scrolling all the way down to the Danger Zone, and selecting [Delete this repository]. You will be asked to confirm this at least once, so do and your repository will be removed. 
 
-```{r echo=FALSE}
+```{r echo=FALSE, fig.cap = "Sterling Archer approves of GitHub"}
 img <- readPNG("images/archer_zod.png")
 grid.raster(img)
 ```
-
-Fig: Sterling Archer approves of GitHub
 
 [^1]: https://thenewstack.io/dont-mess-with-the-master-working-with-branches-in-git-and-github/
 
