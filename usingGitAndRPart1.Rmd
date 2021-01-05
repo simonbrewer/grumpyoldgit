@@ -364,7 +364,7 @@ grid.raster(img)
 
 Fig: Example of git repository with two branches (https://digitalvarys.com/git-branch-and-its-operations/)
 
-Note that it is also possible to checkout from a lower-level branch. If, for example, you have a working version of a new feature, you might want to check out a new branch based on this, where you could add an additional feature, or new method. This does not affect the working version, *and* doesn't mess with the main branch. In this example, a second branch is checked out from `feature1`, then merged back prior to the intermediate branch. The subsequent merge of this with the main branch will include all changes. 
+Note that it is also possible to checkout from a lower-level branch. If, for example, you have a working version of a new feature, you might want to check out a new branch based on this, where you could add some additional code, or an experimental method to test whether it is worht including this in the working branch *before* merging this back to the production level. This does not affect the working version, *and* doesn't mess with the main branch. In this example, a second branch is checked out from `feature1`, then merged back prior to the intermediate branch. The subsequent merge of this with the main branch will include all changes. 
 
 ```{r echo=FALSE, fig.asp=0.25}
 img <- readPNG("images/branches1.png")
@@ -501,7 +501,35 @@ Finally, we need to push the changes to GitHub:
 git push
 ```
 
-Once you see the confirmation notice, go to your GitHub page and check that the changes are visible there. 
+Once you see the confirmation notice, go to your GitHub page and check that the changes are visible there. If everythign has worked, you can now delete your `devel` branch:
+
+```
+git branch -d devel
+```
+
+## Using branches with GitHub
+
+In the previous example, the `devel` branch that we created was entirely held locally (we only pushed the final changes to GitHub). If you want to create a remote copy of your new branch, then you need to run `git push -u origin NEWBRANCH` after it has been made. For example:
+
+```
+git branch -b devel
+git push -u origin devel
+```
+
+You can now store your local commits to the `devel` branch by pushing these to GitHub. You can also control the merge through a pull request on GitHub (we'll look at how to do this next). Note that if you do this, you will need to delete both the remote and local copy of the branch when you are finished. The remote one can be deleted by going to your GitHub repository, clicking on the branches link:
+
+```{r echo=FALSE, fig.asp=0.07}
+img <- readPNG("images/github_branches.png")
+grid.raster(img)
+```
+
+Then clicking on the little red trash can icon next to the branch name. You can now delete the local copy through the command line (the second line here just cleans up the links between your local and remote copy)
+
+```
+git branch -d devel
+git fetch --prune
+```
+
 
 # Cloning a repository
 
