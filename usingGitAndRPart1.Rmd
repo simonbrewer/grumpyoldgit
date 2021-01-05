@@ -129,9 +129,32 @@ git config --global --list
 
 # Connect to GitHub
 
-[NEEDS SOMETHING ON SETTING UP A REPO FOLDER]
+In this section, we will walk through the steps of connecting to GitHub for the first time, and both pulling from and pushing to GitHub from your computer. Before doing anything else, make a new folder on your computer where you can store the files for these labs. I'd suggest making this on your desktop and calling it `rgithub`. Make a note of where this is, and then go to your terminal and change to this directory. Note that in a terminal: 
 
-In this section, we will walk through the steps of connecting to GitHub for the first time, and both pulling from and pushing to GitHub from your computer.
+- `pwd` prints the current directory
+- `cd` changes the directory
+    - `cd` will go to your home directory
+    - `cd ..` will go up one level
+    - `cd /path/to/my/files` will change to whatever path you have listed
+- `ls` will print a list of the files in the current directory
+
+Under Windows, you can change to a desktop folder by typing:
+
+```
+cd /c/User/USERNAME/Desktop/rgithub
+```
+
+Under Mac OSX, you can change to a desktop folder by typing:
+
+```
+cd /Users/USERNAME/Desktop/rgithub
+```
+
+Under Linux:
+
+```
+cd /home/USERNAME/Desktop/rgithub
+```
 
 ## Make a repo on GitHub
 
@@ -148,33 +171,6 @@ This will open a form with several options. Enter the following:
 Click button [Create repository.]
 
 This has created the remote copy of your repository. We now need to link this to a local copy on your computer. Click the green button [Code], and copy the HTTPS URL (if you click on the little clipboard icon this will get copied to your clipboard).
-
-Go back to the terminal on your computer. Change your working directory until you are somewhere where you are happy to be making a copy of your repository. In a terminal:
-
-- `pwd` prints the current directory
-- `cd` changes the directory
-    - `cd` will go to your home directory
-    - `cd ..` will go up one level
-    - `cd /path/to/my/files` will change to whatever path you have listed
-- `ls` will print a list of the files in the current directory
-
-If you are working with Windows, the easiest way to create a folder that you can easily find is to change to the desktop:
-
-```
-cd /c/User/USERNAME/Desktop
-```
-
-And then make a new folder here that you will use for this lab
-
-```
-mkdir rgithub
-```
-
-Finally change to this directory
-
-```
-cd rgithub
-```
 
 Once you have changed directory to where you want the local files saved, make a clone of your repository by typing the following into the terminal:
 
