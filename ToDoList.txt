@@ -1,6 +1,27 @@
 TO DO
 
+- Conflicts with forking
+- General review
+  - Lab 1*
+  - Lab 2
+  - Lab 3
+- Move SSH back to 1? Delete altogether?
+
+DONE
+
+- Review branch intro in lab 1
+- Check how branches are pushed to github with CLI
+  - Cleaning up branches
+- Branches in RStudio (use the plot_ts for this)
+- Issues
+- Resolving conflicts
 - Added something on cloning other peoples repos
 - Something on merging
 - Github pages
 - Add function to first R lab 
+
+New schedule
+
+1: All existing git stuff + branches
+2: Git and RStudio + pages
+3: Collaboration
