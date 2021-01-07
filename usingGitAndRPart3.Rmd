@@ -113,7 +113,7 @@ While this will have merged the changes into your remote repository, the last th
 
 # Working as a team
 
-The last method that we'll look at for collaboration through git is by setting up a team. Unlike forking, this sets a single repository but allows every team member to add changes. The downside to this is that it makes it easier for problems and conflicts to arise through miscommunication or lack of planning. To minimize problems, it is recommended that:
+The last method that we'll look at for collaboration through git is by setting up a team. Unlike forking, this sets a single repository but allows every team member to add changes. This is a very good method when you are starting a project together, rather than making suggested cahnges to an existing project. The downside to this is that it makes it easier for problems and conflicts to arise through miscommunication or lack of planning. To minimize problems, it is recommended that:
 
 - Each team member works on their own branch of the repository
 - One team member is nominated to control merging the different branches as development proceeds
@@ -223,6 +223,16 @@ One the next page, click on [New issue] and then fill out the form on the next p
 ## Bailing out
 
 If, during the merge, you get confused about the state of things or make a mistake, use `git merge --abort` at the command line to abort the merge and go back to the state prior to running `git merge`. Then you can try to complete the merge again.
+
+# Further help
+
+There are a number of good sources for working with git and GitHub, including the Happy Git site that formed the basis of this material. Additional help can be found in the following book:
+
+```{r echo=FALSE}
+img <- readPNG("images/lmgtfy.png")
+grid.raster(img)
+```
+
 
 [^1]: https://thenewstack.io/dont-mess-with-the-master-working-with-branches-in-git-and-github/
 [^2]: Modified from https://ohi-science.org/data-science-training
