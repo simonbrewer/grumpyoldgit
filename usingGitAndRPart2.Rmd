@@ -1,5 +1,10 @@
 ---
 title: 'Linking R and GitHub: part 2'
+knit: (function(input_file, encoding) {
+  out_dir <- 'docs';
+  rmarkdown::render(input_file,
+ encoding=encoding,
+ output_file=file.path(dirname(input_file), out_dir, 'gog_part2.html'))})
 author: "Simon Brewer"
 date: "10/16/2020"
 output:
@@ -185,7 +190,7 @@ knit: (function(input_file, encoding) {
 
 Then modify this file to run some R code and show the results. Save this file and then click the [Knit] button to make sure the HTML compiles. Now stage/commit your changes, *making sure that this includes the `docs` folder*. Now push these changes to GitHub.
 
-Go back now to yoru GitHub repository and click [Settings] from the top menu. Scroll down to the section labelled `GitHub Pages`. Under 'Source', set 'Branch' to `main` and the folder to `docs/` (if you don't see this folder, it was not not uploaded in the commit).
+Go back now to your GitHub repository and click [Settings] from the top menu. Scroll down to the section labelled `GitHub Pages`. Under 'Source', set 'Branch' to `main` and the folder to `docs/` (if you don't see this folder, it was not not uploaded in the commit).
 
 ```{r echo=FALSE, fig.asp=0.2}
 img <- readPNG("images/github_pages.png")
