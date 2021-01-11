@@ -1,5 +1,10 @@
 ---
 title: 'Linking R and GitHub: part 3'
+knit: (function(input_file, encoding) {
+  out_dir <- 'docs';
+  rmarkdown::render(input_file,
+ encoding=encoding,
+ output_file=file.path(dirname(input_file), out_dir, 'gog_part3.html'))})
 author: "Simon Brewer"
 date: "10/16/2020"
 output:
