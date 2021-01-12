@@ -207,7 +207,7 @@ The `head` command will show you the first few lines of the README file. This is
 git remote show origin
 ```
 
-Another very useful command is `git status`, which provides a sumamry of the current repository, including 
+Another very useful command is `git status`, which provides a summary of the current repository, including 
 
 - Which branch you are working on (more on this later)
 - Whether or not files are being tracked (i.e. monitored for changes by git)
@@ -252,7 +252,7 @@ git push
 
 The description of changes is a key part of the way git works, and you will not be allowed to push changes without this. The goal here is to make the description brief but informative, and in turn the commits you make should be relatively small increments each time. Remember that the goal of these comments is to allow collaborators and other users to understand what is going on and how this is affecting the code. 
 
-Depending on your operating system, this might open a browser page for GitHub's credential manager, which can be used to store your login details. Here, you need to click the green button [Authorize GitCredentialManager], then enter your password. This may not work in certain browsers (e.g. Windows Edge). If the button is grayed out and you can't click it, close the browser and stop the `push` command (presee `Ctrl-C` in the terminal). Now set you default browser to something else (e.g. Chrome) and try and run the `git push` command again. 
+Depending on your operating system, this might open a browser page for GitHub's credential manager, which can be used to store your login details. Here, you need to click the green button [Authorize GitCredentialManager], then enter your password. This may not work in certain browsers (e.g. Windows Edge). If the button is grayed out and you can't click it, close the browser and stop the `push` command (press `Ctrl-C` in the terminal). Now set you default browser to something else (e.g. Chrome) and try and run the `git push` command again. 
 
 If this has worked, you should see some output similar to this:
 
@@ -290,7 +290,7 @@ Enter some text and then scroll down and click [Commit changes]. Go back to the 
 git pull
 ```
 
-And your changes will be downloaded from the server. In the output from the command thre should be a brief description of the changes:
+And your changes will be downloaded from the server. In the output from the command there should be a brief description of the changes:
 
 ```
     Fast-forward
@@ -474,7 +474,7 @@ git commit -m "Added introduction..."
 
 Once you have finished making all the changes, we can merge this back to the `main` branch. Remember that this would usually be done when you have checked and tested any changes you've made, and your code is production ready. If it is not, it is better to keep it on the working or development branch. 
 
-In order to merge, *you need to be on the branch you want to merge to.* In this example, that means moving back to the `main` branch (run the `git branch` command just to chek you are in the right place:
+In order to merge, *you need to be on the branch you want to merge to.* In this example, that means moving back to the `main` branch (run the `git branch` command just to check you are in the right place:
 
 ```
 git checkout main
@@ -502,7 +502,7 @@ Finally, we need to push the changes to GitHub:
 git push
 ```
 
-Once you see the confirmation notice, go to your GitHub page and check that the changes are visible there. If everythign has worked, you can now delete your `devel` branch:
+Once you see the confirmation notice, go to your GitHub page and check that the changes are visible there. If everything has worked, you can now delete your `devel` branch:
 
 ```
 git branch -d devel
