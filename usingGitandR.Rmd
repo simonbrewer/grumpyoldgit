@@ -1,0 +1,28 @@
+---
+title: 'Linking R and GitHub'
+knit: (function(input_file, encoding) {
+  out_dir <- 'docs';
+  rmarkdown::render(input_file,
+ encoding=encoding,
+ output_file=file.path(dirname(input_file), out_dir, 'index.html'))})
+author: "Simon Brewer"
+date: "01/11/2021"
+output:
+  html_document:
+    theme: flatly
+    df_print: paged
+    number_sections: true
+    toc: false
+    toc_float: false
+---
+
+
+- [Part 1][gog_part1]
+- [Part 2][gog_part2]
+- [Part 3][gog_part3]
+
+[gog_part1]: https://simonbrewer.github.io/grumpyoldgit/gog_part1.html
+[gog_part2]: https://simonbrewer.github.io/grumpyoldgit/gog_part2.html
+[gog_part3]: https://simonbrewer.github.io/grumpyoldgit/gog_part3.html
+
+
