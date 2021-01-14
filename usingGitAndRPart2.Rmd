@@ -46,7 +46,7 @@ Let's try and make some changes. First, make sure the README.md file is open in 
 
 If you now look at the RStudio panel with the [Environment], [History] and [Connections] tabs, you should see a new one labeled [Git]. Click on this and you should see your READ.md file with a small blue ‘M’ next to it. This indicates that this file has been modified and is different from the version downloaded from GitHub. If you're happy with the changes you made, click on the check-box next to the 'M' (under the heading 'Staged') to stage these changes for uploading.
 
-Now click the [Commit] button. A new window will open showing a) all the files; b) the staged files with a check mark; c) a blank panel to add a commit message; d) a display of which lines have been changed in the currently highlit file (green for additions, red for deletions). Check that your file is still listed as 'Staged' and add a commit message; a short description of the changes. Once this is done, click [Commit] to commit your changes. This effectively creates an updated local version of the repository, including the staged changes. However, if you check your GitHub repository, and look at the README file there, you will see that the changes have not yet been uploaded. To do this, we need to push the changes, so click this button – you should see a short message detailing the upload. Go back to your browser and recheck the README file and you should see your changes appear (refresh the browser page if they are not there). 
+Now click the [Commit] button. A new window will open showing a) all the files; b) the staged files with a check mark; c) a blank panel to add a commit message; d) a display of which lines have been changed in the currently highlit file (green for additions, red for deletions). Check that your file is still listed as 'Staged' and add a commit message; a short description of the changes. Once this is done, click [Commit] to commit your changes. This effectively creates an updated local version of the repository, including the staged changes. However, if you check your GitHub repository, and look at the README file there, you will see that the changes have not yet been uploaded. To do this, we need to push the changes. Click the [Push] button (either in the Git panel or in the Review changes windowand  you should see a short message detailing the upload. Go back to your browser and recheck the README file and you should see your changes appear (refresh the browser page if they are not there). 
 
 Now let’s add an R script. In RStudio, click [File] > [New File] > [R Script] to open a blank R script. Add the following R code to this script:
 
@@ -90,7 +90,7 @@ img <- readPNG("images/rstudio_branches.png")
 grid.raster(img)
 ```
 
-Clicking this will open a small window, where you can enter the name of a new branch. Add a name and click [Create]. This will now create a new branch, push it to your GitHub repository and set RStudio to work in the new repository. If you want to checkout a different branch, click on the drop down menu next to the New Branch button. 
+Clicking this will open a small window, where you can enter the name of a new branch. Add a name and click [Create]. This will now create a new branch, push it to your GitHub repository and set RStudio to work in the new repository. If you want to checkout a different branch (e.g. you want to switch back to the `main` branch), click on the drop down menu next to the New Branch button. 
 
 Now let's add some code. The following is just some simple code to make a plot from a file, feel free to replace this with your own code if you'd prefer. Rather than a simple script, we'll make a function to make the plots. Open a new R script and enter the following code:
 
@@ -112,7 +112,7 @@ getwd()
 
 Now if you check your Git tab, you should now see this file, with a small 'A' to indicate this is a new file added to the repository. Click on the check box next to the file name to stage it, then click [Commit] and add a short message. This time, we won't push the changes to GitHub just yet, so close the 'Review Changes' window when you are done. If you look at the [Git] tab in RStudio, you should now see a message stating that `Your branch is ahead of origin/main by 1 commit`. 
 
-Note that you can make several local commits in this way, and then push them all to GitHub on one go. This can be useful if your connection is limited in anyway. We'll add a simple R script that reads the Mauna Loa CO$_2$ file and plots it. Open a new script and add the following code (note we need to load both the data and the file containing the plot function.
+Note that you can make several local commits in this way, and then push them all to GitHub on one go. This can be useful if your connection is limited in any way. We'll add a simple R script that reads the Mauna Loa CO$_2$ file and plots it using this function. Open a new script and add the following code (note we need to load both the data and the file containing the plot function.
 
 ```{r fig.keep='none'}
 # Load function
@@ -145,7 +145,7 @@ img <- readPNG("images/no_conflict.png")
 grid.raster(img)
 ```
 
-If no problems have been found, fill out the pull request (title and explanatory text), and click [Create pull request]. The next page lists the details of the proposed merge as well as a section for comments (this will make more sense when we look at this for collaborative work). Click [Merge pull request] and [Confirm request]. Once the branches are merged, GitHub will give you the option to delete the new branch, and you should do so. It is generally cleaner to make a new branch for the next development step than to re-use an existing branch once you are finished with it. Go back to the main repository page and you should see that your changes have been integrated. 
+If no problems have been found, fill out the pull request (title and explanatory text), and click [Create pull request]. The next page lists the details of the proposed merge as well as a section for comments (this will make more sense when we look at collaborative work). Click [Merge pull request] and [Confirm request]. Once the branches are merged, GitHub will give you the option to delete the new branch, and you should do so. It is generally cleaner to make a new branch for the next development step than to re-use an existing branch once you are finished with it. Go back to the main repository page and you should see that your changes have been integrated. 
 
 Now let's update your local `main` repository. Go back to RStudio, choose `main` from the drop-down branch menu (top right). This will probably delete some files, but don't panic (!), you will get them back from GitHub in a moment. Click [Pull] and git will download the new files, bringing your local `main` into line with the remote copy. 
 
@@ -176,9 +176,9 @@ git fetch --prune
 
 # GitHub pages
 
-If you click on the name of any of the files in your repository, GitHub will show you the contents as long as they are text files. If you add an HTML document to your repo, GitHub will not try to render it, but simply show you the underlying code. If you want to show the rendered HTML, you need to use GitHub pages instead. This requires a little more set up, but is worth knowing as you can generate HTML pages using R Markdown, then push these and make them publicly visible. 
+If you click on the name of any of the files in your repository, GitHub will show you the contents as long as they are text files. If you add an HTML document to your repo, GitHub will not try to render it, but simply show you the underlying code. If you want to show the rendered HTML, you need to use GitHub pages instead. This requires a little more set up, but is worth knowing as you can generate HTML pages using R Markdown, then push these and make them publicly visible (like this document). 
 
-You can do these steps in one of your existing repositories or create a new one. Either way, make sure that you have an R project that is linked to a GitHub repository. First, in the folder containing your local repository add a new sub folder called `docs`. Next, open an R Markdown file in RStudio, selecting HTML output. Add the following code to the header, just underneath the `title`:
+You can do these steps in one of your existing repositories or create a new one. Either way, make sure that you have an R project that is linked to a GitHub repository. First, in the folder containing your local repository make a new sub folder called `docs`. Next, open an R Markdown file in RStudio, selecting HTML output. Add the following code to the header, just underneath the `title`:
 
 ```
 knit: (function(input_file, encoding) {
@@ -190,14 +190,14 @@ knit: (function(input_file, encoding) {
 
 Then modify this file to run some R code and show the results. Save this file and then click the [Knit] button to make sure the HTML compiles. Now stage/commit your changes, *making sure that this includes the `docs` folder*. Now push these changes to GitHub.
 
-Go back now to your GitHub repository and click [Settings] from the top menu. Scroll down to the section labelled `GitHub Pages`. Under 'Source', set 'Branch' to `main` and the folder to `docs/` (if you don't see this folder, it was not not uploaded in the commit).
+Go back now to your GitHub repository and click [Settings] from the top menu. Scroll down to the section labelled `GitHub Pages`. Under 'Source', set 'Branch' to `main` and the folder to `docs/` (if you don't see this folder, it was not uploaded in the commit).
 
 ```{r echo=FALSE, fig.asp=0.2}
 img <- readPNG("images/github_pages.png")
 grid.raster(img)
 ```
 
-Choose a theme for your web page from under 'Theme chooser'. GitHub will now set up your webpage, and the URL will appear at the top of this section (you might need to refresh the Settings page to see this). Click on this now to open the web page. 
+Feel free to choose a theme for your web page under 'Theme chooser'. GitHub will now set up your webpage, and the URL will appear at the top of this section (you might need to refresh the Settings page to see this). Click on this now to open the web page. 
 
 Now if you want to make changes to the webpage, simply update the markdown in your local repository, knit it to HTML and stage/commit/push it to GitHub. Note that if you updated the theme, you will need to pull the changes back to your local repository first. 
 
@@ -267,6 +267,7 @@ Note: you can make branches using the SHA1 hash numbers of previous commits. Thi
 git checkout 7c709f0
 ```
 
+Would make a new branch with a repository in the same state as following the second commit. 
 # Appendix: Setup SSH
 
 [NOTE THAT THIS SECTION MAY NO LONGER BE NEEDED IF YOU HAVE USED GITHUB CREDENTIAL MANAGER]
